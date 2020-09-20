@@ -1,11 +1,58 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Week 1 Notes</title>
+  <title>Week 1 Notes</title>
 </head>
+
 <body>
 
-<h1>Week 1 Notes</h1>
+  <h1>Week 1 Notes</h1>
+  <h3>Doing Stuff with Web Things</h3>
+  <p>
+    function loadStory(){<br>
+    var storyName = document.getElementById(“name_input”).value<br>
+    var storyHTML = localStorage.getItem(storyName)<br>
+    document.getElementById(“story_editor”).value = storyHTML<br>
+    }
+  </p>
+  <p>
+    function saveStory(){<br>
+    var storyName = document.getElementById(“name_input”).value<br>
+    var storyHTML = document.getElementById(“story_editor”).value<br>
+    localStorage.setItem(storyName, storyHTML)<br>
+    }
+  </p>
+  <p>
+    function displayStory(){<br>
+    var storyHTML = document.getElementById(“story_editor”).value<br>
+    document.getElementById(“story_display”).innerHTML = storyHTML<br>
+    }<br>
+  </p>
+
+  <h4>How to Rewire Your Brain for Mobile First</h4>
+  <ol>
+    <li>Desktop sales declining, mobile is not a fad</li>
+    <li>Start small and scale up</li>
+  </ol>
+
+  <h4>How to Improve UX by Understanding Users</h4>
+  <p>Immediate. Relevant. Frictionless</p>
+  <p>Be There. Be Useful. Be Quick.</p>
+
+  <h4>Better Mobile UX with Strategic Menu Design</h4>
+  <p>Placement Matters. Understanding Matters. Perception Matters.</p>
+
+  <h4>Designing Intuitive and Mobile Friendly Forms</h4>
+  <p>Errors Happen, Passwords Matter, Numbers Matter, Calls Matter</p>
+
+  <h4>Designing a Better Mobile Advertising User Experience</h4>
+  <ol>
+    <li>No Pop-ups/Pop-overs</li>
+    <li>Keep it simple and sleek</li>
+    <li>Unobtrusive Ads, Content First</li>
+  </ol>
 
 </body>
+
 </html>
