@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Week 2 Notes</title>
+</head>
+
+<body>
+
+  <h1>Week 3 Notes</h1>
+  
+  <h3>Examples</h3>
+  <ul>
+    <li><a href="events.html">Events Practice</a></li>
+    <li><a href="reduce.html">Reduce Practice</a></li>
+    <li><a href="week3.html">Team Assignment</a></li>
+  </ul>
+
+  <h2>Javascript.info Object methods, "this"</h2>
+
+  <p>
+    To access the object, a method can use the "this" keyword. The value of "this" is the object “before dot”, the one
+    used to call the method.
+  </p>
+  <p>
+    Test "this"<br> User's name is: <span id="testUser"></span>
+  </p>
+
+  <script>
+    let user = {
+      name: "John",
+      age: 30,
+
+      sayHi() {
+        // "this" is the "current object"
+        //alert(this.name);
+        document.getElementById("testUser").innerHTML = this.name;
+      }
+    };
+    user.sayHi(); // John
+  </script>
+
+  <h2>Javascript: Novice to Ninja</h2>
+
+  <h3>Chapter 5 - Objects</h3>
+
+  <h5>Creating Objects</h5>
+  <p>
+    const spiderman = {};<br> // empty object
+    const name = 'Iron Man';<br>
+    const realName = 'Tony Stark';<br>
+    const ironMan = { name: name, realName: realName }; //long way<br>
+    const ironMan = { name, realName }; //short ES6 way, property key is the same as a variable name that the property
+    value is assigned to
+  </p>
+
+  <h5>Accessing Properties</h5>
+  <p>
+    You can use the dot notation or square brackets to access an object's properties:<br>
+    superman.name or superman['name'] or superman["real" + " " + "name"]
+  </p>
+
+  <h5>Computed Properties</h5>
+  <p>
+    Can use JavaScript code in square brackets for the property key:<br>
+    const hulk = { name: 'Hulk', ['catch' + 'Phrase']: 'Hulk Smash!' };<br>
+    const bewitched = true;<br>
+    const captainBritain = { name: 'Captain Britain', hero: bewitched ? false : true };<br><br>
+    You can also use a symbol as a key:<br>
+    const realName = Symbol('real name');<br>
+    supergirl[realName] = 'Kara Danvers';
+  </p>
+
+  <h5>Other Notes about Object Properties and Methods</h5>
+  <ul>
+    <li>You can call an object's method with dot or bracket notation. superman.fly() or superman['fly']()</li>
+    <li>Use the in operator to check for a property: 'city' in superman (returns false/true)</li>
+    <li>Also can use hasOwnProperty() method to see if an object has it's own property (not one inherited)</li>
+    <li>Loop through properties using for in loop: for(const key in superman){ console.log(key + ": " + superman[key]);}
+    </li>
+    <li>use Object.keys(objectname) will return an array of all the keys, Object.values(objectname) will return array of
+      all the values, Object.entries(objectname) returns array of key-value pairs (use of to iterate through)</li>
+    <li>Add new properties and methods: superman.city = 'Metropolis'</li>
+    <li>Change values: superman['real name'] = 'Kal-El'</li>
+    <li>Remove properties: delete superman.fly</li>
+    <li>Nested Objects: Objects can contain objects</li>
+    <li>Objects are copied by reference (change one and change the other copy)</li>
+  </ul>
+
+  <h5>Objects as Parameters to Functions</h5>
+  <ul>
+    <li>An object can be passed as a parameter to a function</li>
+    <li>The parameters can be in different order and can be assigned default values</li>
+  </ul>
+
+  <h5>Namespacing</h5>
+  <p>Use an object to create a namespace for a group of functions to avoid colliding with other functions of the same
+    name.</p>
+
+  <h5>JSON</h5>
+  <ol>
+    <li>Property names must be double-quoted</li>
+    <li>Permitted values are double-quoted strings, numbers, true, false, null, arrays and objects</li>
+    <li>Functions are not permitted values</li>
+  </ol>
+  <ul>
+    <li>JSON.parse() converts JSON data to a JS object</li>
+    <li>JSON.stringify() converts JS object to JSON data</li>
+  </ul>
+
+  <h5>MATH Object</h5>
+  <ul>
+    <li>Properties: Math.PI, Math.SQRT2, etc.</li>
+    <li>Methods: Math.abs(), Math.ceil(), Math.floor(), Math.log(), Math.max(), Math.sin(), Math.random(), etc</li>
+    <li>Rounding creates some issues and errors, keep it in mind</li>
+  </ul>
+
+  <h5>DATE Object</h5>
+  <ul>
+    <li>Constructor: new Date(); (defaults to current date) or set it by
+      ('year,month,day,hour,minutes,seconds,milliseconds')</li>
+    <li>Methods: Math.abs(), Math.ceil(), Math.floor(), Math.log(), Math.max(), Math.sin(), Math.random(), etc</li>
+    <li>Rounding creates some issues and errors, keep it in mind</li>
+  </ul>
+
+  <h5>Regular Expressions - RegExp()</h5>
+  <a href="https://www.rexegg.com/regex-quickstart.html">Regex Cheat Sheet</a>
+
+
+  <h3>Chatper 6 - The Document Object Model</h3>
+
+  <h5>Node Lists</h5>
+  <ul>
+    <li>document.images (etc.) -> returns a node list of all the elements</li>
+    <li>Accessed using [ ] square brackets and .length with for loop</li>
+    <li>Not an array but can be turned into an array const imageArray = Array.from(document.images)</li>
+    <li>getElementById, getElementsByTagName, getElementsByClassName </li>
+    <li>querySelector -> ('#bats') ('.hero') gives first one, querySelectorAll gives a node list</li>
+    <li>Example: const ul = document.querySelector('ul#roster'); const batman = ul.querySelector('li#bats');</li>
+    <li>Can use .children .firstChild .lastChild .length .parentNode .nextSibling .previousSibling etc. on node lists
+    </li>
+    <li>.nodeValue .textContent (innerText)</li>
+    <li>.id .className - can be used to find or change </li>
+    <li>.classList -> use .add .remove .toggle .contains </li>
+  </ul>
+
+  <h5>Creating Dynamic Markup</h5>
+  <ul>
+    <li>document.createElement('tagname')</li>
+    <li>document.createTextNode('textgoeshere')</li>
+    <li>parentelement.appendChild('childelement')</li>
+    <li>use .textContent instead to append text</li>
+    <li>parentelement.insertBefore(newnode, nodeitgoesbefore)</li>
+    <li>parent.removeChild(childtoberemoved)</li>
+    <li>parent.replaceChild(newnode, replacednode)</li>
+    <li>.innerHTML -> </li>
+  </ul>
+
+  <h5>Updating CSS</h5>
+  <ul>
+    <li>use .style to update any css</li>
+    <li>use camelcase and remove dashes for any property names</li>
+    <li>.display = none (invisible!) block (appear!)</li>
+    <li>getComputedStyle(element) returns all styles (except from external stylesheet)</li>
+  </ul>
+
+  <h3>Chapter 7 - Events</h3>
+
+  <h5>Event Listeners</h5>
+  <ul>
+    <li>document.nodename.addEventListener('event', callback);</li>
+  </ul>
+
+
+
+  <h2>Questions</h2>
+  <ol>
+    <li>I didn't really understand arguments() and rest operator and how it was used exactly with a function</li>
+    <li>
+      Why is my Ninja Quiz's css not showing up until after the alerts are over? (Timeout!)
+    </li>
+    <li>Still confused about the reduce() function for arrays - did a bit more practice outside team assignment</li>
+  </ol>
+
+</body>
+
+</html>

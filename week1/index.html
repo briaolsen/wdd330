@@ -3,11 +3,23 @@
 
 <head>
   <title>Week 1 Notes</title>
+  <link rel="stylesheet" href="../css/notes.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
 
-  <h1>Week 1 Notes</h1>
+  <script>
+    $(function () {
+      $("#header").load("../partials/header.html");
+      $("#footer").load("../partials/footer.html");
+    });
+  </script>
+
+  <div id="header"></div>
+
+  <h2>Week 1 Notes</h2>
+
   <h3>Doing Stuff with Web Things</h3>
   <p>
     function loadStory(){<br>
@@ -52,6 +64,8 @@
     <li>Keep it simple and sleek</li>
     <li>Unobtrusive Ads, Content First</li>
   </ol>
+
+  <div id="footer"></div>
 
 </body>
 
