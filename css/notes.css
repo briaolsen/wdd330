@@ -1,0 +1,38 @@
+
+body {
+  margin: 40px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+h1 {
+  color: darkslategrey;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 40px;
+  padding: 40px;
+  border-bottom: 4px dotted darkslategray;
+}
+
+h2 {
+  background-color: rgb(34, 34, 34);
+  color: white;
+  padding: 30px;
+  font-size: 30px;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  margin-bottom: 20px;
+  margin-top: 70px;
+}
+
+h3 {
+  background-color: rgb(204, 204, 204);
+  font-size: 20px;
+  padding: 20px;
+  margin-top: 40px;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  border-left: 4px solid darkslategray;
+}
+
+h5 {
+  color: rgb(124, 124, 124);
+  font-size: 18px;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
