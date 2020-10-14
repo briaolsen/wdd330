@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Week 5 Notes</title>
+  <link rel="stylesheet" href="../css/notes.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+  <script>
+    $(document).ready(function () {
+      $("button").click(function () {
+        $("#div1").load("../partials/header.html");
+      });
+    });
+  </script>
+
+  <div id="div1">
+    <h2>Practicing with Jquery</h2>
+  </div>
+  <button>Load Heading</button>
+
+  <h1>Week 5 Notes</h1>
+
+  <h2>Examples</h2>
+  <ul>
+    <li><a href="hero.html">Hero Practice</a></li>
+  </ul>
+
+  <h2>Javascript: Novice to Ninja</h2>
+
+  <h3>Chapter 10 - Testing and Debugging</h3>
+
+  <h5>Errors, Exceptions, and Warnings</h5>
+  <ul>
+    <li>Errors - caused when something goes wrong in a program; system, programmer, or user</li>
+    <li>Exception - error that produces a return value that can be used by the program to deal with the error</li>
+    <li>Stack Traces - produced by an exception; a sequence of functions or method calls that lead to the error</li>
+    <li>Warning - there's an error but not enough to crash the program</li>
+    <li>Strict Mode - produces more exceptions and warnings and prohibits deprecated features; use to spot errors early and forces better code; 'use strict'; in JS file at top or inidividual functions</li>
+    <li>Linting Tools - can be used to test the quality of JS code beyond strict mode (JS Lint, JS Hint, ES Lint), useful for enforcing a style guide</li>
+    <li>Feature Detection - use an if statement to check if something exists before calling a method</li>
+  </ul>
+
+  <h5>Debugging in the Browser</h5>
+  <ul>
+    <li>alert() - show a dialog at certain points of the code, stops it until ok is clicked</li>
+    <li>console.log() - use to log variable values, does not stop the program</li>
+    <li>console.trace() - will log an interactive stack trace to the console</li>
+    <li></li>
+  </ul>
+ 
+
+  <h2>Questions</h2>
+  <ol>
+    <li>I'd like to practice more with mixins</li>
+  </ol>
+
+</body>
+
+</html>
