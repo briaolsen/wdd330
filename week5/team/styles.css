@@ -21,11 +21,11 @@ li {
   flex-direction: row;
 }
 
-ul {
+.list {
   display: grid;
   align-items: center;
 }
 
-li {
+.data {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
