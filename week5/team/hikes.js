@@ -79,7 +79,7 @@ export default class Hikes {
       child.addEventListener('click', e => {
         //console.log(e.currentTarget.innerHTML);
         //console.log(e.currentTarget.dataset.name);
-        this.showOneHike(getName(e.currentTarget.innerHTML));
+        this.showOneHike(this.getName(e.currentTarget.innerHTML));
       });
     });
   }
