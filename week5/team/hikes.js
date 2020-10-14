@@ -56,13 +56,12 @@ export default class Hikes {
   
   //show a list of hikes in the parentElement
   showHikeList() {
-    this.backButton.classList.add('hidden');
     const hikeListElement = document.getElementById("hikes");
     hikeListElement.innerHTML = "";
     //renderHikeList(hikeList, hikeListElement);
     renderHikeList(hikeListElement, hikeList);
     this.addHikeListener();
-    
+    this.backButton.classList.add('hidden');
   }
   
   // show one hike with full details in the parentElement
@@ -72,7 +71,7 @@ export default class Hikes {
 
     hikeList.forEach(hike => {
       if (hikes.name === hikeName)
-      parentElement.appendChild(renderOneHikeFull(hike));
+      renderHikeOne(hike);
       this.backButton.classList.remove('hidden');
     });
    
@@ -117,6 +116,10 @@ function renderHikeList(parent, hikes) {
     hikes.forEach(hike => {
     parent.appendChild(renderOneHikeLight(hike));
   });
+}
+
+function renderHikeOne(parent, hike) {
+  parent.appendChild(renderOneHikeFull(hike));
 }
 
 function renderOneHikeLight(hike) {
