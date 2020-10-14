@@ -66,15 +66,11 @@ export default class Hikes {
   
   // show one hike with full details in the parentElement
   showOneHike(hikeName) {
-    const hikeListElement = document.getElementById("hikes");
-    hikeListElement.innerHTML = "";
-
-    hikeList.forEach(hike => {
-      if (hikes.name === hikeName)
-      renderHikeOne(hike);
-      this.backButton.classList.remove('hidden');
-    });
-   
+    const hike = this.getHikeByName(hikeName);
+    this.parentElement.innerHTML = '';
+    this.parentElement.appendChild(renderOneHikeFull(hike));
+    // show the back button
+    this.backButton.classList.remove('hidden');
   }
   
   // in order to show the details of a hike ontouchend we will need to attach a listener AFTER the list of hikes has been built. The function below does that.
@@ -116,10 +112,6 @@ function renderHikeList(parent, hikes) {
     hikes.forEach(hike => {
     parent.appendChild(renderOneHikeLight(hike));
   });
-}
-
-function renderHikeOne(parent, hike) {
-  parent.appendChild(renderOneHikeFull(hike));
 }
 
 function renderOneHikeLight(hike) {

@@ -7,3 +7,25 @@ body {
  img {
    max-width: 100%;
  }
+
+ h1, h2 {
+  text-align: center;
+  display: block;
+  background-color: lightseagreen;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+div {
+  background-color: lightsalmon;
+  display: flex;
+  flex-direction: row;
+}
+
+ol {
+  display: grid;
+  align-items: center;
+}
+
+li {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
