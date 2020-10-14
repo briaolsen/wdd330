@@ -84,24 +84,16 @@ export default class Hikes {
         this.showOneHike(e.currentTarget.dataset.name);
       });
     });
-  
-
-  getName(text) {
-    let name = text.charAt(5);
-    for (let i = 6; text.charAt(i) != '<'; i++) {
-      name += text.charAt(i);
-    }
-    console.log(name);
-    return name;
   }
   
   buildBackButton() {
-    const backButton = document.createElement("button");
-    backButton.addEventListener('click', () => {
+    const backButton = document.createElement('button');
+    backButton.innerHTML = '&lt;- All Hikes';
+    backButton.addEventListener('touchend', () => {
       this.showHikeList();
     });
     backButton.classList.add('hidden');
-
+    this.parentElement.before(backButton);
     return backButton;
   }
 }
