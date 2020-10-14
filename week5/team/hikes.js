@@ -76,6 +76,8 @@ export default class Hikes {
     const childArray = Array.from(document.getElementById("hikes").children);
     childArray.forEach(child => {
       child.addEventListener('click', e => {
+        console.log(e.currentTarget.dataset);
+        console.log(this.showOneHike(e.currentTarget.dataset));
         this.showOneHike(e.currentTarget.dataset.name);
       });
     });
