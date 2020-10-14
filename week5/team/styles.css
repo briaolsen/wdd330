@@ -21,6 +21,10 @@ body {
   flex-direction: row;
 }
 
+li {
+  list-style-type: none;
+}
+
 .list {
   display: grid;
   align-items: center;

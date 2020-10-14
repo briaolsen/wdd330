@@ -64,6 +64,7 @@ export default class Hikes {
   // show one hike with full details in the parentElement
   showOneHike(hikeName) {
     const hike = this.getHikeByName(hikeName);
+    console.log(hike);
     this.parentElement.innerHTML = '';
     this.parentElement.appendChild(renderOneHikeFull(hike));
     // show the back button
