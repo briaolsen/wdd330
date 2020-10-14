@@ -77,6 +77,7 @@ export default class Hikes {
     childrenArray.forEach(child => {
       child.addEventListener('click', e => {
         // why currentTarget instead of target?
+        console.log(e.currentTarget.dataset.name);
         this.showOneHike(e.currentTarget.dataset.name);
       });
     });
