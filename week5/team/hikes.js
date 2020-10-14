@@ -62,6 +62,7 @@ export default class Hikes {
     //renderHikeList(hikeList, hikeListElement);
     renderHikeList(hikeListElement, hikeList);
     this.addHikeListener();
+    
   }
   
   // show one hike with full details in the parentElement
@@ -69,9 +70,9 @@ export default class Hikes {
     const hikeListElement = document.getElementById("hikes");
     hikeListElement.innerHTML = "";
 
-    hikes.forEach(hike => {
+    hikeList.forEach(hike => {
       if (hikes.name === hikeName)
-      parent.appendChild(renderOneHikeFull(hike));
+      parentElement.appendChild(renderOneHikeFull(hike));
       this.backButton.classList.remove('hidden');
     });
    
