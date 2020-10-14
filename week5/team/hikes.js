@@ -57,7 +57,7 @@ export default class Hikes {
   //show a list of hikes in the parentElement
   showHikeList() {
 
-    parentElement.innerHTML = '';
+    this.parentElement.innerHTML = '';
     // notice that we use our getter above to grab the list instead of getting it directly...this makes it easier on us if our data source changes...
     renderHikeList(this.parentElement, this.getAllHikes());
     this.addHikeListener();
@@ -68,8 +68,8 @@ export default class Hikes {
   // show one hike with full details in the parentElement
   showOneHike(hikeName) {
     const hike = this.getHikeByName(hikeName);
-    parentElement.innerHTML = '';
-    parentElement.appendChild(renderOneHikeFull(hike));
+    this.parentElement.innerHTML = '';
+    this.parentElement.appendChild(renderOneHikeFull(hike));
     // show the back button
     this.backButton.classList.remove('hidden');
   }
@@ -93,7 +93,7 @@ export default class Hikes {
       this.showHikeList();
     });
     backButton.classList.add('hidden');
-    parentElement.before(backButton);
+    this.parentElement.before(backButton);
     return backButton;
   }
 }
