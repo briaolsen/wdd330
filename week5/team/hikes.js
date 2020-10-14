@@ -69,7 +69,7 @@ export default class Hikes {
   showOneHike(hikeName) {
     const hike = this.getHikeByName(hikeName);
     parentElement.innerHTML = '';
-    this.parentElement.appendChild(renderOneHikeFull(hike));
+    parentElement.appendChild(renderOneHikeFull(hike));
     // show the back button
     this.backButton.classList.remove('hidden');
   }
@@ -93,7 +93,7 @@ export default class Hikes {
       this.showHikeList();
     });
     backButton.classList.add('hidden');
-    this.parentElement.before(backButton);
+    parentElement.before(backButton);
     return backButton;
   }
 }
@@ -127,20 +127,20 @@ function renderOneHikeFull(hike) {
 
   item.innerHTML = ` <h2>${hike.name}</h2>
   <div class="image"><img src="${imgBasePath}${hike.imgSrc}" alt="${hike.imgAlt}"></div>
-  <div>
-          <div>
+  <div class="list">
+          <div class="data">
               <h3>Distance</h3>
               <p>${hike.distance}</p>
           </div>
-          <div>
+          <div class="data">
               <h3>Difficulty</h3>
               <p>${hike.difficulty}</p>
           </div>
-          <div>
+          <div class="data">
               <h3>Description</h3>
               <p>${hike.description}</p>
           </div>
-          <div>
+          <div class="data">
               <h3>Directions</h3>
               <p>${hike.directions}</p>
           </div>
