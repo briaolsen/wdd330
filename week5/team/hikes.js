@@ -56,11 +56,11 @@ export default class Hikes {
   
   //show a list of hikes in the parentElement
   showHikeList() {
-    const hikeListElement = document.getElementById("hikes");
-    hikeListElement.innerHTML = "";
-    //renderHikeList(hikeList, hikeListElement);
-    renderHikeList(hikeListElement, hikeList);
+    this.parentElement.innerHTML = '';
+    // notice that we use our getter above to grab the list instead of getting it directly...this makes it easier on us if our data source changes...
+    renderHikeList(this.parentElement, this.getAllHikes());
     this.addHikeListener();
+    // make sure the back button is hidden
     this.backButton.classList.add('hidden');
   }
   
@@ -118,7 +118,7 @@ function renderOneHikeLight(hike) {
   const item = document.createElement("li");
   item.innerHTML = ` <h2>${hike.name}</h2>
   <div class="image"><img src="${imgBasePath}${hike.imgSrc}" alt="${hike.imgAlt}"></div>
-  <div>
+  <div class="d">
           <div>
               <h3>Distance</h3>
               <p>${hike.distance}</p>
