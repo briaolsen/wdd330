@@ -29,3 +29,7 @@ li {
 .data {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
+.hidden {
+  display: none;
+}
