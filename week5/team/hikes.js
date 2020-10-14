@@ -74,13 +74,23 @@ export default class Hikes {
   addHikeListener() {
     // We need to loop through the children of our list and attach a listener to each, remember though that children is a nodeList...not an array. So in order to use something like a forEach we need to convert it to an array.
     const childArray = Array.from(document.getElementById("hikes").children);
+
     childArray.forEach(child => {
       child.addEventListener('click', e => {
-        console.log(e.currentTarget.innerHTML);
-        console.log(e.currentTarget.dataset.name);
-        this.showOneHike(e.currentTarget.dataset.name);
+        //console.log(e.currentTarget.innerHTML);
+        //console.log(e.currentTarget.dataset.name);
+        this.showOneHike(getName(e.currentTarget.innerHTML));
       });
     });
+  }
+
+  getName(text) {
+    let name = text.charAt(5);
+    for (let i = 6; text.charAt(i) != '<'; i++) {
+      name += text.charAt(i);
+    }
+    console.log(name);
+    return name;
   }
   
   buildBackButton() {
