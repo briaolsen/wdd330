@@ -15,7 +15,7 @@ body {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-li {
+.image {
   background-color: lightsalmon;
   display: flex;
   flex-direction: row;

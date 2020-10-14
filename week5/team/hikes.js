@@ -120,7 +120,7 @@ function renderOneHikeFull(hike) {
   const item = document.createElement("li");
 
   item.innerHTML = ` <h2>${hike.name}</h2>
-  <div class="image"><img src="${imgBasePath}${hike.imgSrc}" alt="${hike.imgAlt}"></div>
+  <div class="image"><img src="${imgBasePath}${hike.imgSrc}" alt="${hike.imgAlt}">
   <div class="list">
           <div class="data">
               <h3>Distance</h3>
@@ -138,7 +138,7 @@ function renderOneHikeFull(hike) {
               <h3>Directions</h3>
               <p>${hike.directions}</p>
           </div>
-
+  </div>
   </div>`;
 
   return item;
