@@ -56,10 +56,12 @@ export default class Hikes {
   
   //show a list of hikes in the parentElement
   showHikeList() {
+
     this.backButton.classList.add('hidden');
     const hikeListElement = document.getElementById("hikes");
     hikeListElement.innerHTML = "";
-    renderHikeList(hikeList, hikeListElement);
+    //renderHikeList(hikeList, hikeListElement);
+    renderHikeList(hikeListElement, hikeList);
   }
   
   // show one hike with full details in the parentElement
