@@ -61,6 +61,7 @@ export default class Hikes {
     hikeListElement.innerHTML = "";
     //renderHikeList(hikeList, hikeListElement);
     renderHikeList(hikeListElement, hikeList);
+    this.addHikeListener();
   }
   
   // show one hike with full details in the parentElement
