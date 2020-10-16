@@ -39,3 +39,7 @@ li {
 .hidden {
   display: none;
 }
+
+image {
+  width: 50%;
+}

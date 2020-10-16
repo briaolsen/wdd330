@@ -50,6 +50,7 @@ export default class Hikes {
   }
   // For the first stretch we will need to get just one hike.
   getHikeByName(hikeName) {
+    console.log(`this should be the hike name ${hikeName}`);
     return this.getAllHikes().find(hike => hike.name === hikeName);
   }
   //show a list of hikes in the parentElement
@@ -69,7 +70,7 @@ export default class Hikes {
     this.parentElement.appendChild(renderOneHikeFull(hike));
     // show the back button
     this.backButton.classList.remove('hidden');
-  }
+  } 
   // in order to show the details of a hike ontouchend we will need to attach a listener AFTER the list of hikes has been built. The function below does that.
   addHikeListener() {
     // We need to loop through the children of our list and attach a listener to each, remember though that children is a nodeList...not an array. So in order to use something like a forEach we need to convert it to an array.
@@ -77,11 +78,12 @@ export default class Hikes {
     childrenArray.forEach(child => {
       child.addEventListener('click', e => {
         // why currentTarget instead of target?
-        console.log(e.currentTarget.dataset.name);
+        console.log(e.currentTarget);
         this.showOneHike(e.currentTarget.dataset.name);
       });
     });
   }
+  
   buildBackButton() {
     const backButton = document.createElement('button');
     backButton.innerHTML = '&lt;- All Hikes';
