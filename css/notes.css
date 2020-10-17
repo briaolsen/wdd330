@@ -41,6 +41,9 @@ h5 {
   background-color: black;
   color: white;
   text-decoration: none;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 30px;
+  padding: 40px;
 }
 
 #header-div a:link {
