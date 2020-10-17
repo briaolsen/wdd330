@@ -11,11 +11,11 @@
 
 
   <script>
-    $(document).ready(function () {
-      $("button").click(function () {
+    //$(document).ready(function () {
+      //$("button").click(function () {
         $("#div1").load("../partials/header.html");
-      });
-    });
+      //});
+    //});
   </script>
 
   <div id="div1">
@@ -40,8 +40,10 @@
     <li>Exception - error that produces a return value that can be used by the program to deal with the error</li>
     <li>Stack Traces - produced by an exception; a sequence of functions or method calls that lead to the error</li>
     <li>Warning - there's an error but not enough to crash the program</li>
-    <li>Strict Mode - produces more exceptions and warnings and prohibits deprecated features; use to spot errors early and forces better code; 'use strict'; in JS file at top or inidividual functions</li>
-    <li>Linting Tools - can be used to test the quality of JS code beyond strict mode (JS Lint, JS Hint, ES Lint), useful for enforcing a style guide</li>
+    <li>Strict Mode - produces more exceptions and warnings and prohibits deprecated features; use to spot errors early
+      and forces better code; 'use strict'; in JS file at top or inidividual functions</li>
+    <li>Linting Tools - can be used to test the quality of JS code beyond strict mode (JS Lint, JS Hint, ES Lint),
+      useful for enforcing a style guide</li>
     <li>Feature Detection - use an if statement to check if something exists before calling a method</li>
   </ul>
 
@@ -50,13 +52,51 @@
     <li>alert() - show a dialog at certain points of the code, stops it until ok is clicked</li>
     <li>console.log() - use to log variable values, does not stop the program</li>
     <li>console.trace() - will log an interactive stack trace to the console</li>
-    <li></li>
+    <li>debugger - creates a breakpoint that will pause the program, can hover over variables to see what they are at
+      the time</li>
+    <li>error object - can be created my the program or when an exception occurs; RangeError, ReferenceError,
+      SyntaxError, TypeError, URIError, InternalError - can be used as constructors; have properties: name (returns type
+      of error), message (returns a description of the error), stack (returns a stack trace)</li>
+    <li>throw - used to throw your own exceptions, should throw an error object, can give it your own message</li>
+    <li>try/catch/finally - wrap code in try/block to catch an exception, catch block will handle the problem; finally
+      block will always be executed after try & catch</li>
   </ul>
- 
+
+  <h5>Test-Driven Development</h5>
+  <p>Red-Green-Refactor cycle</p>
+  <ol>
+    <li>Write tests (initially fail)</li>
+    <li>Write code to pass the tests</li>
+    <li>Refactor the code</li>
+    <li>Test refactored code</li>
+    <li>Write more tests for new features</li>
+  </ol>
+
+  <h5>Testing Frameworks</h5>
+  <ul>
+    <li>Jest - TDD framework by Facebook, provides helper methods for common test assertions; npm install -g jest; example in script tags</li>
+    <li><a href="https://jestjs.io/docs/en/expect">Jest's Matcher Methods</a></li>
+  </ul>
+
+  <script>
+    /*
+    function squareRoot(number) {
+      'use strict';
+      if (number < 0) {
+        throw new RangeError("You can't find the square root of negative numbers")
+    }
+      return Math.sqrt(number);
+    };
+    test('square root of 4 is 2', () => {
+    expect(squareRoot(4)).toBe(2);
+    });
+    */
+  </script>
+
 
   <h2>Questions</h2>
   <ol>
-    <li>I'd like to practice more with mixins</li>
+    <li></li>
   </ol>
 
 </body>
