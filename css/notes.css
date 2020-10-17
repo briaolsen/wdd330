@@ -36,3 +36,21 @@ h5 {
   font-size: 18px;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
+
+#header-div {
+  background-color: black;
+  color: white;
+  text-decoration: none;
+}
+
+#header-div a:link {
+  color: white;
+}
+
+#header-div a:visited {
+  color: white;
+}
+
+#header-div a:hover {
+  color: white;
+}
