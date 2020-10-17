@@ -20,6 +20,10 @@ function makeDirectory() {
       label: "Week 4 Notes",
       url: "week4/index.html",
     },
+    {
+      label: "Week 5 Notes",
+      url: "week5",
+    },
   ];
 
   for (var i = 0; i < notes.length; i++) {
