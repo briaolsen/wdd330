@@ -1,7 +1,10 @@
 
 body {
-  margin: 40px;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+#notes {
+  margin: 40px;
 }
 
 h1 {
@@ -44,6 +47,7 @@ h5 {
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   font-size: 30px;
   padding: 40px;
+  
 }
 
 #header-div a:link {
