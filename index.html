@@ -4,17 +4,34 @@
 <head>
   <title>Briana Olsen's WDD 330 Portfolio</title>
   <script src="js/main.js"></script>
+  <link id="style" rel="stylesheet" href="../css/notes.css?r='+ Math.floor(Math.random()*100)">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body onload="makeDirectory(), makePractice()">
 
-  <h1>Briana Olsen's WDD 330 Portfolio</h1>
+  <script>
+    $(document).ready(function () {
+      $("#head").load("../partials/header.html");
+      $('#style').attr('href', '../css/notes.css');
+    });
+  </script>
 
-  <h2>Directory</h2>
-  <ol id="directory"></ol>
+  <div id="head">
 
-  <h2>Code Practice</h2>
-  <ol id="practice"></ol>
+  </div>
+
+  <div id="notes">
+
+    <h1>Briana Olsen's WDD 330 Portfolio</h1>
+
+    <h2>Directory</h2>
+    <ol id="directory"></ol>
+
+    <h2>Code Practice</h2>
+    <ol id="practice"></ol>
+
+    </div>
 
 </body>
 
