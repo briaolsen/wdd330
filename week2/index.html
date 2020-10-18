@@ -4,194 +4,217 @@
 <head>
   <title>Week 2 Notes</title>
 
-  <link rel="stylesheet" href="../css/notes.css">
+  <link id="style" rel="stylesheet" href="../css/notes.css?r='+ Math.floor(Math.random()*100)">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
 </head>
 
 <body>
 
-  <h1>Week 2 Notes</h1>
+  <script>
+    $(document).ready(function () {
+      $("#head").load("../partials/header.html");
+      $('#style').attr('href', '../css/notes.css');
+    });
+  </script>
 
-  <h2>Javascript: Novice to Ninja</h2>
+  <div id="head">
 
-  <h3>Chapter 2 - Programming Basics</h3>
+  </div>
 
-  <h5>var vs let vs const</h5>
-  <p>
-    let and const have block scope, preventing you from overwriting any built-in methods by assignment<br>
-    block scope - values only exist inside the block they are declared in<br>
-    global scope - declared outside of a block and is accessible anywhere in the program<br>
-    local scope - any variables defined inside a block using let or const are only available inside that block
-    (otherwise they are global)
-  </p>
+  <div id="notes">
 
-  <h5>Template Literals</h5>
-  <p>
-    Template literals use the backtick character ` to deliminate the string. Can use both types of quote marks within.
-    Also allow insertion of JavaScript code with ${ }.
-  </p>
+    <h1>Week 2 Notes</h1>
 
-  <h3>Chapter 3 - Arrays, Logic, and Loops</h3>
+    <h2>Javascript: Novice to Ninja</h2>
 
-  <h5>Array Methods</h5>
-  <p>
-    array.length -> find the length of an array<br>
-    array.pop() -> returns the last item of the array<br>
-    array.shift() -> removes the first item in the array<br>
-    array.push('item') -> appends a new value to the end of the array, returns new length<br>
-    array.unshift('item') -> appends a new item to the beginning of the array, returns new length<br>
-    array.concat(['item1', 'item2']) -> merge an array with one or more arrays and returns the new array<br>
-    array.join(' & ') -> returns a string comprising of all the items in the array separated by commas by default, or
-    you can choose a separator<br>
-    array.slice(2, 4) -> returns a subarray, chopping out a slice of the original array starting with first number, not
-    including second number<br>
-    array.splice(3, 1, 'New Item') -> removes items from the array and inserts new items in their place, (start,
-    #removed, inserted), returns the items removed, can remove 0 items<br>
-    array.reverse() -> permanently reverses the order of the array<br>
-    array.sort() -> permanently sorts the array by alphabetical order<br>
-    array.indexOf('item') -> returns the index, or -1 if not included<br>
-    array.includes('item', 1) -> returns a boolean if element is in the array, can also specify where to start the
-    search<br>
-    ... spread operator -> three dots placed in front of an array, spreads out the elements of the array, can be used to
-    spread out two arrays and merge, can also be used to flatten multidimensional arrays<br>
-  </p>
+    <h3>Chapter 2 - Programming Basics</h3>
 
-  <h5>Ternary Operator</h5>
-  <p>
-    condition ? (//code to run if condition is true) : (//code to run if condition is false)
-  </p>
+    <h5>var vs let vs const</h5>
+    <p>
+      let and const have block scope, preventing you from overwriting any built-in methods by assignment<br>
+      block scope - values only exist inside the block they are declared in<br>
+      global scope - declared outside of a block and is accessible anywhere in the program<br>
+      local scope - any variables defined inside a block using let or const are only available inside that block
+      (otherwise they are global)
+    </p>
 
-  <h5>For-Of Loop</h5>
-  <p>
-    ARRAYS: for(const value of array) { do something with value; } -> value represents the value of each element in the
-    array<br>
-    MAPS: for(const key of map.keys()) { do something with key } or for(const value of map.values()) { do something with
-    value }
-  </p>
+    <h5>Template Literals</h5>
+    <p>
+      Template literals use the backtick character ` to deliminate the string. Can use both types of quote marks within.
+      Also allow insertion of JavaScript code with ${ }.
+    </p>
 
-  <h4>Chapter Summary</h4>
-  <ol>
-    <li>Arrays are an ordered list of values</li>
-    <li>Multidimensional arrays are arrays that contain other arrays</li>
-    <li>Arrays have lots of methods that can be used to manipulate items in the array</li>
-    <li>Sets are new in ES6 and are ordered lists of non-duplicate values</li>
-    <li>Maps are new in ES6 and are ordered lists of key-value pairs</li>
-    <li>We can use an if and else statement to control the flow of code</li>
-    <li>The switch statement can be used instead of multiple if and else statements</li>
-    <li>A while loop and do ... while loop can be used to repeat a block of code while a condition is still true</li>
-    <li>A for loop works in a similar way to a while loop, but has a different syntax</li>
-    <li>A for-of loop can be used to iterate over an array</li>
-    <li>Sets and maps are enumerable, so can also be looped over using a for-of loop</li>
-  </ol>
+    <h3>Chapter 3 - Arrays, Logic, and Loops</h3>
 
-  <h3>Chapter 4 - Functions</h3>
+    <h5>Array Methods</h5>
+    <p>
+      array.length -> find the length of an array<br>
+      array.pop() -> returns the last item of the array<br>
+      array.shift() -> removes the first item in the array<br>
+      array.push('item') -> appends a new value to the end of the array, returns new length<br>
+      array.unshift('item') -> appends a new item to the beginning of the array, returns new length<br>
+      array.concat(['item1', 'item2']) -> merge an array with one or more arrays and returns the new array<br>
+      array.join(' & ') -> returns a string comprising of all the items in the array separated by commas by default, or
+      you can choose a separator<br>
+      array.slice(2, 4) -> returns a subarray, chopping out a slice of the original array starting with first number,
+      not
+      including second number<br>
+      array.splice(3, 1, 'New Item') -> removes items from the array and inserts new items in their place, (start,
+      #removed, inserted), returns the items removed, can remove 0 items<br>
+      array.reverse() -> permanently reverses the order of the array<br>
+      array.sort() -> permanently sorts the array by alphabetical order<br>
+      array.indexOf('item') -> returns the index, or -1 if not included<br>
+      array.includes('item', 1) -> returns a boolean if element is in the array, can also specify where to start the
+      search<br>
+      ... spread operator -> three dots placed in front of an array, spreads out the elements of the array, can be used
+      to
+      spread out two arrays and merge, can also be used to flatten multidimensional arrays<br>
+    </p>
 
-  <h5>Named Function Literal</h5>
-  <p>function hello(){ console.log('Hello World');}</p>
+    <h5>Ternary Operator</h5>
+    <p>
+      condition ? (//code to run if condition is true) : (//code to run if condition is false)
+    </p>
 
-  <h5>Anonymous Function Expression</h5>
-  <p>const goodbye = function(){ console.log('Goodbye World!');};</p>
+    <h5>For-Of Loop</h5>
+    <p>
+      ARRAYS: for(const value of array) { do something with value; } -> value represents the value of each element in
+      the
+      array<br>
+      MAPS: for(const key of map.keys()) { do something with key } or for(const value of map.values()) { do something
+      with
+      value }
+    </p>
 
-  <h5>Named Function Expression</h5>
-  <p>const goodbye = function bye(){ console.log('Goodbye World!');};</p>
+    <h4>Chapter Summary</h4>
+    <ol>
+      <li>Arrays are an ordered list of values</li>
+      <li>Multidimensional arrays are arrays that contain other arrays</li>
+      <li>Arrays have lots of methods that can be used to manipulate items in the array</li>
+      <li>Sets are new in ES6 and are ordered lists of non-duplicate values</li>
+      <li>Maps are new in ES6 and are ordered lists of key-value pairs</li>
+      <li>We can use an if and else statement to control the flow of code</li>
+      <li>The switch statement can be used instead of multiple if and else statements</li>
+      <li>A while loop and do ... while loop can be used to repeat a block of code while a condition is still true</li>
+      <li>A for loop works in a similar way to a while loop, but has a different syntax</li>
+      <li>A for-of loop can be used to iterate over an array</li>
+      <li>Sets and maps are enumerable, so can also be looped over using a for-of loop</li>
+    </ol>
 
-  <h5>Arguments</h5>
-  <p>
-    Can use arguments() function to see the arguments. It is not an array so you can't use array methods.
-  </p>
-  <p>
-    Rest operator: creates an array of arguments available inside the body of the function<br>
-    function rest(...args){ return args; } -> args is an array<br>
-    To use rest operator put three dots in front of the last parameter in a function declaration. This collects all the
-    args entered into an array. Can use a for-loop to get to them all.
-  </p>
+    <h3>Chapter 4 - Functions</h3>
 
-  <h5>Default Parameters</h5>
-  <p>
-    Default parameters -> values that will be used if no argument is specified.<br>
-    function hello(name='World') { }<br>
-    Put default at the end of the arguments.
-  </p>
+    <h5>Named Function Literal</h5>
+    <p>function hello(){ console.log('Hello World');}</p>
 
-  <h5>Arrow Functions</h5>
-  <p>
-    Parameters come before the arrow and the main body comes after. Always anonymous and must be assigned to a
-    variable.<br>
-    const square = x => x*x;<br>
-    const add = (x,y) => x + y;
-    const hello = () => alert('Hello World!');
-    Single parameters don't need () Body not in {} if only one line. Don't need return if one line. Don't bind their own
-    value of this to the function.
-  </p>
-  <p>
-    Arrow functions aren't great to use for longer functions:<br>
-    const tax = (salary) => {<br>
-    const taxable = salary - 8000;<br>
-    const lowerRate = 0.25 * taxable;<br>
-    taxable = taxable - 20000;<br>
-    const higherRate = 0.4 * taxable;<br>
-    return lowerRate + higherRate;<br>
-    }
-  </p>
+    <h5>Anonymous Function Expression</h5>
+    <p>const goodbye = function(){ console.log('Goodbye World!');};</p>
 
-  <h5>Hoisting</h5>
-  <p>
-    Move all variable and function declarations to the top of the current scope so they can be used whenever. Best used
-    for functions and not variables and not for function expressions (anonymous function is assigned to a variable).
-  </p>
+    <h5>Named Function Expression</h5>
+    <p>const goodbye = function bye(){ console.log('Goodbye World!');};</p>
 
-  <h5>Callbacks</h5>
-  <p>
-    Functions that are passed as an argument to another.
-  </p>
-  <p>
-    function sing(song, callback) {<br>
-    console.log(`I'm singing along to ${song}`.);<br>
-    callback();<br>
-    }<br>
-    <br>
-    function dance() {<br>
-    console.log(`Dancing`);<br>
-    }<br>
-    <br>
-    sing('Let It Go', dance);<br>
-    sing('Let It Go',()=>{ console.log("I'm standing on my head.");});
-  </p>
+    <h5>Arguments</h5>
+    <p>
+      Can use arguments() function to see the arguments. It is not an array so you can't use array methods.
+    </p>
+    <p>
+      Rest operator: creates an array of arguments available inside the body of the function<br>
+      function rest(...args){ return args; } -> args is an array<br>
+      To use rest operator put three dots in front of the last parameter in a function declaration. This collects all
+      the
+      args entered into an array. Can use a for-loop to get to them all.
+    </p>
 
-  <h5>For-Each Function</h5>
-  <p>
-    forEach() takes three parameters - value in the array, index, the array it's being called on<br><br>
-    colors.forEach( (color, index) => <br>
-    console.log(`Color at position ${index} is ${color}`) );
-  </p>
+    <h5>Default Parameters</h5>
+    <p>
+      Default parameters -> values that will be used if no argument is specified.<br>
+      function hello(name='World') { }<br>
+      Put default at the end of the arguments.
+    </p>
 
-  <h5>Map Function</h5>
-  <p>
-    Iterates over an array and takes a callback function as a parameter. It returns a new array that replaces each value
-    with the return value of the callback function.<br>
-    <br>
-    [1,2,3].map( x => 2 * x);<br>
-    << [2,4,6]
-  </p>
+    <h5>Arrow Functions</h5>
+    <p>
+      Parameters come before the arrow and the main body comes after. Always anonymous and must be assigned to a
+      variable.<br>
+      const square = x => x*x;<br>
+      const add = (x,y) => x + y;
+      const hello = () => alert('Hello World!');
+      Single parameters don't need () Body not in {} if only one line. Don't need return if one line. Don't bind their
+      own
+      value of this to the function.
+    </p>
+    <p>
+      Arrow functions aren't great to use for longer functions:<br>
+      const tax = (salary) => {<br>
+      const taxable = salary - 8000;<br>
+      const lowerRate = 0.25 * taxable;<br>
+      taxable = taxable - 20000;<br>
+      const higherRate = 0.4 * taxable;<br>
+      return lowerRate + higherRate;<br>
+      }
+    </p>
 
-  <h5>Other Methods for Arrays</h5>
-  <p>
-    Reduce() - Iterates over each value in the array and combines each result to return just a single value.<br>
-    Filter() - returns a new array that only contains items from the original array that return true when passed to a callback<br>
-  </p>
+    <h5>Hoisting</h5>
+    <p>
+      Move all variable and function declarations to the top of the current scope so they can be used whenever. Best
+      used
+      for functions and not variables and not for function expressions (anonymous function is assigned to a variable).
+    </p>
 
-  <h5>Chaining Iterators</h5>
-  <p>
-    You can use an iterator function on an array returned by an iterator function.
-  </p>
+    <h5>Callbacks</h5>
+    <p>
+      Functions that are passed as an argument to another.
+    </p>
+    <p>
+      function sing(song, callback) {<br>
+      console.log(`I'm singing along to ${song}`.);<br>
+      callback();<br>
+      }<br>
+      <br>
+      function dance() {<br>
+      console.log(`Dancing`);<br>
+      }<br>
+      <br>
+      sing('Let It Go', dance);<br>
+      sing('Let It Go',()=>{ console.log("I'm standing on my head.");});
+    </p>
 
-  <h2>Questions</h2>
-  <ol>
-    <li>I didn't really understand arguments() and rest operator and how it was used exactly with a function</li>
-    <li>
-      Why is my Ninja Quiz's css not showing up until after the alerts are over?
-    </li>
-  </ol>
+    <h5>For-Each Function</h5>
+    <p>
+      forEach() takes three parameters - value in the array, index, the array it's being called on<br><br>
+      colors.forEach( (color, index) => <br>
+      console.log(`Color at position ${index} is ${color}`) );
+    </p>
 
+    <h5>Map Function</h5>
+    <p>
+      Iterates over an array and takes a callback function as a parameter. It returns a new array that replaces each
+      value
+      with the return value of the callback function.<br>
+      <br>
+      [1,2,3].map( x => 2 * x);<br>
+      << [2,4,6] </p>
+
+        <h5>Other Methods for Arrays</h5>
+        <p>
+          Reduce() - Iterates over each value in the array and combines each result to return just a single value.<br>
+          Filter() - returns a new array that only contains items from the original array that return true when passed
+          to a callback<br>
+        </p>
+
+        <h5>Chaining Iterators</h5>
+        <p>
+          You can use an iterator function on an array returned by an iterator function.
+        </p>
+
+        <h2>Questions</h2>
+        <ol>
+          <li>I didn't really understand arguments() and rest operator and how it was used exactly with a function</li>
+          <li>
+            Why is my Ninja Quiz's css not showing up until after the alerts are over?
+          </li>
+        </ol>
+  </div>
 </body>
 
 </html>

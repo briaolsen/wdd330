@@ -9,137 +9,156 @@
 
 <body>
 
-
   <script>
     $(document).ready(function () {
-      $("button").click(function () {
-        $("#div1").load("../partials/header.html");
-      });
+      $("#head").load("../partials/header.html");
+      $('#style').attr('href', '../css/notes.css');
     });
   </script>
 
-  <div id="div1">
-    <h2>Practicing with Jquery</h2>
+  <div id="head">
+
   </div>
-  <button>Load Heading</button>
 
-  <h1>Week 4 Notes</h1>
+  <div id="notes">
 
-  <h2>Examples</h2>
-  <ul>
-    <li><a href="hero.html">Hero Practice</a></li>
-    <li><a href="search.html">Search Practice</a></li>
-  </ul>
+    <h1>Week 4 Notes</h1>
 
-  <h2>Javascript: Novice to Ninja</h2>
+    <h2>Examples</h2>
+    <ul>
+      <li><a href="hero.html">Hero Practice</a></li>
+      <li><a href="search.html">Search Practice</a></li>
+    </ul>
 
-  <h3>Chapter 8 - Forms</h3>
+    <h2>Javascript: Novice to Ninja</h2>
 
-  <h5>Accessing Form Elements</h5>
-  <ul>
-    <li>const form = document.forms[0];</li>
-    <li>const form = document.getElementsByTagname('form')[0];</li>
-    <li>const form = document.forms.search;</li>
-    <li>const form = document.forms['search'];</li>
-    <li>const [input,button] = form.elements;</li>
-    <li>const input = form.searchInput</li>
-    <li>const input = form['searchInput']</li>
-  </ul>
+    <h3>Chapter 8 - Forms</h3>
 
-  <h5>Form Properties and Methods</h5>
-  <ul>
-    <li>form.submit() - submit the form automatically, won't trigger the submit event</li>
-    <li>Can submit with: button type='submit', input type='submit' value='Submit', input type='image' src='button.png'
-    </li>
-    <li>form.reset() - reset all the form controls to initial values</li>
-    <li>Can reset with: button type='reset' </li>
-    <li>form.action - set the action attribute of a form to be sent to a different URL: form.action = '/an/other.url'
-    </li>
-  </ul>
+    <h5>Accessing Form Elements</h5>
+    <ul>
+      <li>const form = document.forms[0];</li>
+      <li>const form = document.getElementsByTagname('form')[0];</li>
+      <li>const form = document.forms.search;</li>
+      <li>const form = document.forms['search'];</li>
+      <li>const [input,button] = form.elements;</li>
+      <li>const input = form.searchInput</li>
+      <li>const input = form['searchInput']</li>
+    </ul>
 
-  <h5>Form Events</h5>
-  <ul>
-    <li>focus event</li>
-  </ul>
+    <h5>Form Properties and Methods</h5>
+    <ul>
+      <li>form.submit() - submit the form automatically, won't trigger the submit event</li>
+      <li>Can submit with: button type='submit', input type='submit' value='Submit', input type='image' src='button.png'
+      </li>
+      <li>form.reset() - reset all the form controls to initial values</li>
+      <li>Can reset with: button type='reset' </li>
+      <li>form.action - set the action attribute of a form to be sent to a different URL: form.action = '/an/other.url'
+      </li>
+    </ul>
 
-  <h5>Form Controls</h5>
-  <ul>
-    <li>input - default: text - password, checkbox, radio button, number, tel, color</li>
-    <li>select</li>
-    <li>textarea</li>
-    <li>button</li>
-  </ul>
+    <h5>Form Events</h5>
+    <ul>
+      <li>focus event</li>
+    </ul>
 
-  <h5>Form Validation</h5>
-  <ul>
-    <li>required</li>
-    <li>javascript - write own code to validate input, preventDefault() keyup event listener, append() to the label, display: none or block</li>
-    <li>disable submit button</li>
-  </ul>
+    <h5>Form Controls</h5>
+    <ul>
+      <li>input - default: text - password, checkbox, radio button, number, tel, color</li>
+      <li>select</li>
+      <li>textarea</li>
+      <li>button</li>
+    </ul>
 
-  <h3>Chapter 12 - Object-Oriented Programming in JavaScript</h3>
+    <h5>Form Validation</h5>
+    <ul>
+      <li>required</li>
+      <li>javascript - write own code to validate input, preventDefault() keyup event listener, append() to the label,
+        display: none or block</li>
+      <li>disable submit button</li>
+    </ul>
 
-  <ul>
-    <li>Encapsulation - the programming logic implemented inside an object and user does not know how it's done</li>
-    <li>Polymorphism - various objects can share the same method but implement them differently or more specifically</li>
-    <li>Inheritance - an object and its properties and methods can be inherited and added to</li>
-    <li>Classes - classes are  used to definite a blueprint for an object</li>
-  </ul>
+    <h3>Chapter 12 - Object-Oriented Programming in JavaScript</h3>
 
-  <h5>Classes</h5>
-  <ul>
-    <li>Constructor - constructor(params) {} example: class Dice { constructor(sides=6){this.sides=sides;}} const blueDice = new Dice(20); </li>
-    <li>Static Methods - keyword used in declarations, aka "class methods", called by the class and not by the instances of a class</li>
-    <li>Prototype - default property that is shared by every instance of the class added to the class declaration, can be accessed using .prototype, .constructor.prototype, Object.getPrototypeOf(var), ._proto_, can be reassigned using =, can add prototypes (or functions) later Class.prototype.variable = </li>
-    <li>Public Methods - default public, can be seen  and changed </li>
-    <li>Private Methods - can keep variables private so they cannot be accessed or changed, use getter & setter methods to return or change in a controlled way </li>
-    <li>Prototype Chain - chain of inheritance</li>
-    <li>Inheritance - can inherit using extends in class declaration, use super() to refer to parent class</li>
-    <li>Polymorphism - different objects can have the same method but implement it in different ways, objects can override a method with more specific implementation</li>
-    <li>Adding Methods to Built-In Objects - you can add more methods to the prototype of built-in objects (Number, String, Array) - "monkey-patching"</li>
-  </ul>
+    <ul>
+      <li>Encapsulation - the programming logic implemented inside an object and user does not know how it's done</li>
+      <li>Polymorphism - various objects can share the same method but implement them differently or more specifically
+      </li>
+      <li>Inheritance - an object and its properties and methods can be inherited and added to</li>
+      <li>Classes - classes are used to definite a blueprint for an object</li>
+    </ul>
 
-  <h5>Property Attributes and Descriptors</h5>
-  <ul>
-    <li>value - the value of the property, undefined by default</li>
-    <li>writable - boolean value shows if a property can be changed or not</li>
-    <li>enumerable - boolean value shows if a property will shwo up when an object is displayed in a for in loop</li>
-    <li>configurable - boolean value shows whether you can delete a property or change any of its attributes</li>
-    <li>getters and setters - use to change and return properties </li>
-  </ul>
+    <h5>Classes</h5>
+    <ul>
+      <li>Constructor - constructor(params) {} example: class Dice { constructor(sides=6){this.sides=sides;}} const
+        blueDice = new Dice(20); </li>
+      <li>Static Methods - keyword used in declarations, aka "class methods", called by the class and not by the
+        instances of a class</li>
+      <li>Prototype - default property that is shared by every instance of the class added to the class declaration, can
+        be accessed using .prototype, .constructor.prototype, Object.getPrototypeOf(var), ._proto_, can be reassigned
+        using =, can add prototypes (or functions) later Class.prototype.variable = </li>
+      <li>Public Methods - default public, can be seen and changed </li>
+      <li>Private Methods - can keep variables private so they cannot be accessed or changed, use getter & setter
+        methods to return or change in a controlled way </li>
+      <li>Prototype Chain - chain of inheritance</li>
+      <li>Inheritance - can inherit using extends in class declaration, use super() to refer to parent class</li>
+      <li>Polymorphism - different objects can have the same method but implement it in different ways, objects can
+        override a method with more specific implementation</li>
+      <li>Adding Methods to Built-In Objects - you can add more methods to the prototype of built-in objects (Number,
+        String, Array) - "monkey-patching"</li>
+    </ul>
 
-  <h5>Creating Objects from Other Objects</h5>
-  <p>
-    Can create new objects based on another object that acts as a blueprint or prototype instead. Can avoid using classes.
-  </p>
+    <h5>Property Attributes and Descriptors</h5>
+    <ul>
+      <li>value - the value of the property, undefined by default</li>
+      <li>writable - boolean value shows if a property can be changed or not</li>
+      <li>enumerable - boolean value shows if a property will shwo up when an object is displayed in a for in loop</li>
+      <li>configurable - boolean value shows whether you can delete a property or change any of its attributes</li>
+      <li>getters and setters - use to change and return properties </li>
+    </ul>
 
-  <h5>Object-Based Inheritance</h5>
-  <p>
-    Can use objects like a 'super-class' and become a prototype for another object. This will have all the properties and methods but with some extra methods. Mixins - adding properties and methods of some objects to another object without using inheritance - use Object.assign() method - assign to first argument all the properties of the other arguments.
-  </p>
+    <h5>Creating Objects from Other Objects</h5>
+    <p>
+      Can create new objects based on another object that acts as a blueprint or prototype instead. Can avoid using
+      classes.
+    </p>
 
-  <h5>Mixins</h5>
-  <ul>
-    <li>A mixin is a way of adding properties and methods of some objects to another object without using inheritance.</li>
-    <li>can add in a lot of properties at once - mixin(wonderWoman,{ name: 'Wonder Woman', realName: 'Diana Prince' });</li>
-    <li>Create a copy() method - deep copy</li>
-    <li>Factory Function - function that can be used to return an object, uses copy() function to make a copy then uses the mixin() function to augment any properties and methods of any bojects athat are provided as arguments</li>
-    <li>Mixin() allows us to encapsulate properties and methods in an object then add them to other objects without the overhead of an inheritance being created</li>
-    <li>Methods can be chained together and call all three at once ...</li>
-    <li>Make that = this to keep this from getting lost</li>
-    <li>bind(this) - if this is provided as an argument to bind while its still in scope, this will stay this</li>
-    <li>Use Arrow Functions this stays this</li>
-    <li>Possible to borrow methods from objects without having to inherit all their properties and methods</li>
-    <li>Borrow Array methods - you can borrow methods from arrays, can use slice in arguments</li>
-  </ul>
+    <h5>Object-Based Inheritance</h5>
+    <p>
+      Can use objects like a 'super-class' and become a prototype for another object. This will have all the properties
+      and methods but with some extra methods. Mixins - adding properties and methods of some objects to another object
+      without using inheritance - use Object.assign() method - assign to first argument all the properties of the other
+      arguments.
+    </p>
 
-  
-  
+    <h5>Mixins</h5>
+    <ul>
+      <li>A mixin is a way of adding properties and methods of some objects to another object without using inheritance.
+      </li>
+      <li>can add in a lot of properties at once - mixin(wonderWoman,{ name: 'Wonder Woman', realName: 'Diana Prince'
+        });</li>
+      <li>Create a copy() method - deep copy</li>
+      <li>Factory Function - function that can be used to return an object, uses copy() function to make a copy then
+        uses the mixin() function to augment any properties and methods of any bojects athat are provided as arguments
+      </li>
+      <li>Mixin() allows us to encapsulate properties and methods in an object then add them to other objects without
+        the overhead of an inheritance being created</li>
+      <li>Methods can be chained together and call all three at once ...</li>
+      <li>Make that = this to keep this from getting lost</li>
+      <li>bind(this) - if this is provided as an argument to bind while its still in scope, this will stay this</li>
+      <li>Use Arrow Functions this stays this</li>
+      <li>Possible to borrow methods from objects without having to inherit all their properties and methods</li>
+      <li>Borrow Array methods - you can borrow methods from arrays, can use slice in arguments</li>
+    </ul>
 
-  <h2>Questions</h2>
-  <ol>
-    <li>I'd like to practice more with mixins</li>
-  </ol>
+
+
+
+    <h2>Questions</h2>
+    <ol>
+      <li>I'd like to practice more with mixins</li>
+    </ol>
+
+  </div>
 
 </body>
 

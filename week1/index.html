@@ -10,62 +10,65 @@
 <body>
 
   <script>
-    $(function () {
-      $("#header").load("../partials/header.html");
-      $("#footer").load("../partials/footer.html");
+    $(document).ready(function () {
+      $("#head").load("../partials/header.html");
+      $('#style').attr('href', '../css/notes.css');
     });
   </script>
 
-  <div id="header"></div>
+  <div id="head">
 
-  <h1>Week 1 Notes</h1>
+  </div>
 
-  <h2>Doing Stuff with Web Things</h2>
-  <p>
-    function loadStory(){<br>
-    var storyName = document.getElementById(“name_input”).value<br>
-    var storyHTML = localStorage.getItem(storyName)<br>
-    document.getElementById(“story_editor”).value = storyHTML<br>
-    }
-  </p>
-  <p>
-    function saveStory(){<br>
-    var storyName = document.getElementById(“name_input”).value<br>
-    var storyHTML = document.getElementById(“story_editor”).value<br>
-    localStorage.setItem(storyName, storyHTML)<br>
-    }
-  </p>
-  <p>
-    function displayStory(){<br>
-    var storyHTML = document.getElementById(“story_editor”).value<br>
-    document.getElementById(“story_display”).innerHTML = storyHTML<br>
-    }<br>
-  </p>
+  <div id="notes">
+    <h1>Week 1 Notes</h1>
 
-  <h5>How to Rewire Your Brain for Mobile First</h5>
-  <ol>
-    <li>Desktop sales declining, mobile is not a fad</li>
-    <li>Start small and scale up</li>
-  </ol>
+    <h2>Doing Stuff with Web Things</h2>
+    <p>
+      function loadStory(){<br>
+      var storyName = document.getElementById(“name_input”).value<br>
+      var storyHTML = localStorage.getItem(storyName)<br>
+      document.getElementById(“story_editor”).value = storyHTML<br>
+      }
+    </p>
+    <p>
+      function saveStory(){<br>
+      var storyName = document.getElementById(“name_input”).value<br>
+      var storyHTML = document.getElementById(“story_editor”).value<br>
+      localStorage.setItem(storyName, storyHTML)<br>
+      }
+    </p>
+    <p>
+      function displayStory(){<br>
+      var storyHTML = document.getElementById(“story_editor”).value<br>
+      document.getElementById(“story_display”).innerHTML = storyHTML<br>
+      }<br>
+    </p>
 
-  <h5>How to Improve UX by Understanding Users</h5>
-  <p>Immediate. Relevant. Frictionless</p>
-  <p>Be There. Be Useful. Be Quick.</p>
+    <h5>How to Rewire Your Brain for Mobile First</h5>
+    <ol>
+      <li>Desktop sales declining, mobile is not a fad</li>
+      <li>Start small and scale up</li>
+    </ol>
 
-  <h5>Better Mobile UX with Strategic Menu Design</h5>
-  <p>Placement Matters. Understanding Matters. Perception Matters.</p>
+    <h5>How to Improve UX by Understanding Users</h5>
+    <p>Immediate. Relevant. Frictionless</p>
+    <p>Be There. Be Useful. Be Quick.</p>
 
-  <h5>Designing Intuitive and Mobile Friendly Forms</h5>
-  <p>Errors Happen, Passwords Matter, Numbers Matter, Calls Matter</p>
+    <h5>Better Mobile UX with Strategic Menu Design</h5>
+    <p>Placement Matters. Understanding Matters. Perception Matters.</p>
 
-  <h5>Designing a Better Mobile Advertising User Experience</h5>
-  <ol>
-    <li>No Pop-ups/Pop-overs</li>
-    <li>Keep it simple and sleek</li>
-    <li>Unobtrusive Ads, Content First</li>
-  </ol>
+    <h5>Designing Intuitive and Mobile Friendly Forms</h5>
+    <p>Errors Happen, Passwords Matter, Numbers Matter, Calls Matter</p>
 
-  <div id="footer"></div>
+    <h5>Designing a Better Mobile Advertising User Experience</h5>
+    <ol>
+      <li>No Pop-ups/Pop-overs</li>
+      <li>Keep it simple and sleek</li>
+      <li>Unobtrusive Ads, Content First</li>
+    </ol>
+
+  </div>
 
 </body>
 
