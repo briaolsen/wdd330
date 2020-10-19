@@ -10,27 +10,49 @@
 
 <body>
 
-  <div id="todo-div">
-    <h1>Todos</h1>
-    <ul id="todo" class="hikeStyles">
-      <!-- Todo List Prints Here -->
-    </ul>
+  <div id="app-container">
 
-    <div id="options">
-      <div id="num-tasks"># tasks left</div>
-      <button id="all-btn">All</button>
-      <button id="active-btn">Active</button>
-      <button id="complete-btn">Completed</button>
+    <h1>Todos</h1>
+
+    <div id="todo-container">
+
+      <div id="todos-div">
+
+        <!-- Todo List Prints Here -->
+
+        <div class="todo">
+          <input type="checkbox">
+          <label for="test-task" class="task-label">Pretend Task</label>
+          <div class="remove-btn">X</div>
+        </div>
+
+        <div class="todo">
+          <input type="checkbox">
+          <label class="tasks">Pretend Task 2</label>
+          <div class="remove-btn">X</div>
+        </div>
+
+      </div>
+
+      <!-- # TASKS, SORTING OPTIONS -->
+      <div id="options-div">
+        <div id="num-tasks"># tasks left</div>
+        <div id="all-btn" class="options">All</div>
+        <div id="active-btn" class="options">Active</div>
+        <div id="complete-btn" class="options">Completed</div>
+      </div>
+
     </div>
 
-    <div id="task-input">
-      <input type="text">
+    <!-- TASK INPUT -->
+    <div id="input-container">
+      <input type="text" id="task-input">
       <button id="add-btn">+</button>
     </div>
-    
+
   </div>
 
-  <script src="./main.js" type="module"></script>
+  <script src="./ToDos.js" type="module"></script>
 </body>
 
 </html>

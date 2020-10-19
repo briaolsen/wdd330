@@ -1,0 +1,1 @@
+const newTask = new ToDos('todos');
