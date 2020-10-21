@@ -5,7 +5,7 @@ export default class ToDos {
     this.inputElement = document.getElementById(inputId);
     this.taskList = [{description: "First Task", checked: ""}];
 
-    this.addButton.addEventListener("onclick", (e) => {
+    this.addButton.addEventListener('click', (e) => {
       console.log("Added Button Listener");
       this.addTask();
     });
@@ -43,7 +43,7 @@ export default class ToDos {
   updateRemaining() {}
 
   /* Updates a Task as Completed or Incomplete */
-  updateTask(taskNum) {}
+  updateTask() {}
 }
 
 function renderTaskList(parent, tasks) {
