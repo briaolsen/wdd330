@@ -20,7 +20,7 @@ export default class ToDos {
     numTasks.innerHTML = "# tasks left";
 
     const allBtn = document.createElement("div");
-    allBtn.className = "options";
+    allBtn.className = "optionsCurrent";
     allBtn.id = "all-btn";
     allBtn.innerHTML = "All";
     allBtn.addEventListener('click', e => {
@@ -150,6 +150,7 @@ export default class ToDos {
     this.displayTasks();
   }
 
+  /* Create the task to append to the list */
   makeTask(task, numTask) {
     const item = document.createElement("div");
     item.className = "todo";
