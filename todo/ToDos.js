@@ -1,6 +1,7 @@
 export default class ToDos {
-  constructor(elementId, addButtonId, inputId) {
+  constructor(elementId, optionsId, addButtonId, inputId) {
     this.parentElement = document.getElementById(elementId);
+    this.numTasks = this.buildSortingOptions(document.getElementById(optionsId));
     this.addButton = document.getElementById(addButtonId);
     this.inputElement = document.getElementById(inputId);
     this.taskList = [{description: "First Task", checked: false}];
@@ -12,6 +13,46 @@ export default class ToDos {
     });
   }
 
+  buildSortingOptions(options) {
+    const numTasks = document.createElement("div");
+    numTasks.id = "num-tasks";
+    numTasks.innerHTML = "# tasks left";
+
+    const allBtn = document.createElement("div");
+    allBtn.className = "options";
+    allBtn.id = "all-btn";
+    allBtn.innerHTML = "All";
+    allBtn.addEventListener('click', e => {
+      this.display = "all";
+      this.displayTasks();
+    });
+
+    const activeBtn = document.createElement("div");
+    activeBtn.className = "options";
+    activeBtn.id = "active-btn";
+    activeBtn.innerHTML = "Active";
+    activeBtn.addEventListener('click', e => {
+      this.display = "active";
+      this.displayTasks();
+    });
+
+    const completeBtn = document.createElement("div");
+    completeBtn.className = "options";
+    completeBtn.id = "complete-btn";
+    completeBtn.innerHTML = "Completed";
+    completeBtn.addEventListener('click', e => {
+      this.display = "completed";
+      this.displayTasks();
+    });
+
+    options.appendChild(numTasks);
+    options.appendChild(allBtn);
+    options.appendChild(activeBtn);
+    options.appendChild(completeBtn);
+
+    return numTasks;
+  }
+
   /* Adds a Task to the List */
   addTask() {
     console.log("Add Task");
@@ -20,6 +61,17 @@ export default class ToDos {
     this.displayTasks();
   }
 
+  updateTaskNum() {
+    let t = 0;
+    for(let i = 0; i < this.taskList.length; i++){
+      if(this.taskList[i].checked === false) {
+        t++;
+      }
+    }
+    this.numTasks.innerHTML = `${t} tasks left`;
+  }
+
+  /* Checks the current display option and displays the appropriate tasks */
   displayTasks() {
     switch (this.display) {
       case "all":
@@ -46,23 +98,35 @@ export default class ToDos {
   showAll() {
     console.log("Show All");
     this.parentElement.innerHTML = "";
-    //renderTaskList(this.parentElement, this.taskList);
-    this.createTaskList();
+    for (let i = 0; i < this.taskList.length; i++) {
+      this.parentElement.appendChild(this.makeTask(this.taskList[i], i));
+    }
   }
 
   /* Shows Active Tasks */
-  showActive() {}
+  showActive() {
+    console.log("Show Active");
+    this.parentElement.innerHTML = "";
+    for (let i = 0; i < this.taskList.length; i++) {
+      if(this.taskList[i].checked === false) {
+        this.parentElement.appendChild(this.makeTask(this.taskList[i], i));
+      }
+    }
+  }
 
   /* Shows Completed Tasks */
-  showCompleted() {}
+  showCompleted() {
+    console.log("Show Completed");
+    this.parentElement.innerHTML = "";
+    for (let i = 0; i < this.taskList.length; i++) {
+      if(this.taskList[i].checked === true) {
+        this.parentElement.appendChild(this.makeTask(this.taskList[i], i));
+      }
+    }
+  }
 
   /* Adds Listeners to Each Task */
   addTaskListener() {}
-
-  /* Updates the Number of Remaining Tasks to Complete */
-  updateRemaining() {
-
-  }
 
   /* Updates a Task as Completed or Incomplete */
   updateTask(i) {
@@ -103,26 +167,8 @@ export default class ToDos {
   
     item.appendChild(label);
     item.appendChild(button);
-  
-    /*
-    item.innerHTML = `
-      <label class="container">${task.description}
-        <input type="checkbox" ${task.checked}>
-        <span class="checkmark"></span>
-      </label>
-      <div class="remove-btn">X</div>`;
-    */
-    return item;
-  }
 
-  createTaskList() {
-    for (let i = 0; i < this.taskList.length; i++) {
-      this.parentElement.appendChild(this.makeTask(this.taskList[i], i));
-    }
-    /*
-    tasks.forEach((task) => {
-      parent.appendChild(renderOneTask(task, ));
-    });*/
+    return item;
   }
 
 }
