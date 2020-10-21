@@ -96,6 +96,8 @@ export default class ToDos {
       default:
         this.showAll();
     }
+
+    this.updateTaskNum();
   }
 
   /* Removes a Task from the List */
@@ -145,6 +147,7 @@ export default class ToDos {
     } else {
       this.taskList[i].checked = true;
     }
+    this.displayTasks();
   }
 
   makeTask(task, numTask) {
@@ -163,6 +166,11 @@ export default class ToDos {
     checkbox.type = "checkbox";
     checkbox.checked = task.checked;
     checkbox.addEventListener('click', e => {
+      if(task.checked) {
+        label.innerHTML = `<del>${task.description}</del>`;
+      } else {
+        label.innerHTML = task.description;
+      }
       this.updateTask(numTask);
     });
   
