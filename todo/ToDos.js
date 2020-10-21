@@ -13,6 +13,7 @@ export default class ToDos {
     });
   }
 
+  /* Builds the Sorting Options and adds event listeners */
   buildSortingOptions(options) {
     const numTasks = document.createElement("div");
     numTasks.id = "num-tasks";
@@ -23,6 +24,9 @@ export default class ToDos {
     allBtn.id = "all-btn";
     allBtn.innerHTML = "All";
     allBtn.addEventListener('click', e => {
+      allBtn.className = "optionsCurrent";
+      activeBtn.className = "options";
+      completeBtn.className = "options";
       this.display = "all";
       this.displayTasks();
     });
@@ -32,6 +36,9 @@ export default class ToDos {
     activeBtn.id = "active-btn";
     activeBtn.innerHTML = "Active";
     activeBtn.addEventListener('click', e => {
+      allBtn.className = "options";
+      activeBtn.className = "optionsCurrent";
+      completeBtn.className = "options";
       this.display = "active";
       this.displayTasks();
     });
@@ -41,6 +48,9 @@ export default class ToDos {
     completeBtn.id = "complete-btn";
     completeBtn.innerHTML = "Completed";
     completeBtn.addEventListener('click', e => {
+      allBtn.className = "options";
+      activeBtn.className = "options";
+      completeBtn.className = "optionsCurrent";
       this.display = "completed";
       this.displayTasks();
     });
@@ -143,7 +153,11 @@ export default class ToDos {
   
     const label = document.createElement("label");
     label.className = "container";
-    label.innerHTML = task.description;
+    if(task.checked) {
+      label.innerHTML = `<del>${task.description}</del>`;
+    } else {
+      label.innerHTML = task.description;
+    }
   
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";

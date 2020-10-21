@@ -54,6 +54,11 @@ h1 {
   cursor: pointer;
 }
 
+.optionsCurrent {
+  color: black;
+  padding: 5px;
+}
+
 #input-container {
   align-self: flex-end;
   background-color: white;
