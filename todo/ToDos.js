@@ -1,6 +1,65 @@
 export default class ToDos {
-  constructor(elementId) {
+  constructor(elementId, addButtonId, inputId) {
     this.parentElement = document.getElementById(elementId);
+    this.addButton = document.getElementById(addButtonId);
+    this.inputElement = document.getElementById(inputId);
+    this.taskList = [];
 
+    this.addButton.addEventListener("onclick", (e) => {
+      console.log(e.currentTarget);
+      this.addTask();
+    });
   }
+
+  /* Adds a Task to the List */
+  addTask() {
+    const inputTask = this.inputElement.value;
+    this.taskList.push({ description: inputTask, checked: "" });
+    this.addTaskListener();
+    this.showAll();
+  }
+
+  /* Removes a Task from the List */
+  removeTask(taskNum) {}
+
+  /* Shows all Tasks */
+  showAll() {
+    this.parentElement.innerHTML = '';
+    renderTaskList(this.parentElement, this.taskList);
+  }
+
+  /* Shows Active Tasks */
+  showActive() {}
+
+  /* Shows Completed Tasks */
+  showCompleted() {}
+
+  /* Adds Listeners to Each Task */
+  addTaskListener() {}
+
+  /* Updates the Number of Remaining Tasks to Complete */
+  updateRemaining() {}
+
+  /* Updates a Task as Completed or Incomplete */
+  updateTask(taskNum) {}
+}
+
+function renderTaskList(parent, tasks) {
+  tasks.forEach((task) => {
+    parent.appendChild(renderOneTask(task));
+  });
+}
+
+function renderOneTask(task) {
+  const item = document.createElement("div");
+  item.className = "todo";
+
+  item.innerHTML = `
+    <label class="container">${task.description}
+      <input type="checkbox" ${task.checked}>
+      <span class="checkmark"></span>
+    </label>
+    <div class="remove-btn">X</div>`;
+
+  return item;
 }
