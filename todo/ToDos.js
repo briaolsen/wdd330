@@ -30,7 +30,8 @@ export default class ToDos {
   showAll() {
     console.log("Show All");
     this.parentElement.innerHTML = "";
-    renderTaskList(this.parentElement, this.taskList);
+    //renderTaskList(this.parentElement, this.taskList);
+    this.createTaskList();
   }
 
   /* Shows Active Tasks */
@@ -55,8 +56,62 @@ export default class ToDos {
       tasks[i].checked = true;
     }
   }
+
+  makeTask(task, numTask) {
+    const item = document.createElement("div");
+    item.className = "todo";
+  
+    const label = document.createElement("label");
+    label.className = "container";
+    label.innerHTML = task.description;
+  
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = task.checked;
+    checkbox.addEventListener('click', e => {
+      updateTask(numTask);
+    });
+  
+    const span = document.createElement("span");
+    span.className = "checkmark";
+    
+    const button = document.createElement("div");
+    button.className = "remove-btn";
+    button.innerHTML = "X";
+    button.addEventListener('click', e => {
+      removeTask(numTask);
+    });
+  
+    label.appendChild(checkbox);
+    label.appendChild(span);
+  
+    item.appendChild(label);
+    item.appendChild(button);
+  
+    /*
+    item.innerHTML = `
+      <label class="container">${task.description}
+        <input type="checkbox" ${task.checked}>
+        <span class="checkmark"></span>
+      </label>
+      <div class="remove-btn">X</div>`;
+    */
+    return item;
+  }
+
+  createTaskList() {
+    for (let i = 0; i < this.tasks.length; i++) {
+      this.parentElement.appendChild(makeTask(this.tasks[i], i));
+    }
+    /*
+    tasks.forEach((task) => {
+      parent.appendChild(renderOneTask(task, ));
+    });*/
+  }
+
 }
 
+/*
 function renderTaskList(parent, tasks) {
   for (let i = 0; i < tasks.length; i++) {
     parent.appendChild(renderOneTask(tasks[i], i));
@@ -64,8 +119,8 @@ function renderTaskList(parent, tasks) {
   /*
   tasks.forEach((task) => {
     parent.appendChild(renderOneTask(task, ));
-  });*/
-}
+  });
+}*/
 
 function renderOneTask(task, numTask) {
   const item = document.createElement("div");
