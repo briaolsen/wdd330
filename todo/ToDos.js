@@ -13,6 +13,7 @@ export default class ToDos {
 
   /* Adds a Task to the List */
   addTask() {
+    console.log("Add Task");
     const inputTask = this.inputElement.value;
     this.taskList.push({ description: inputTask, checked: "" });
     this.addTaskListener();
@@ -24,6 +25,7 @@ export default class ToDos {
 
   /* Shows all Tasks */
   showAll() {
+    console.log("Show All");
     this.parentElement.innerHTML = '';
     renderTaskList(this.parentElement, this.taskList);
   }
