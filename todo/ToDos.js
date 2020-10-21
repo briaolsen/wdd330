@@ -3,10 +3,10 @@ export default class ToDos {
     this.parentElement = document.getElementById(elementId);
     this.addButton = document.getElementById(addButtonId);
     this.inputElement = document.getElementById(inputId);
-    this.taskList = [];
+    this.taskList = [{description: "First Task", checked: ""}];
 
     this.addButton.addEventListener("onclick", (e) => {
-      console.log(e.currentTarget);
+      console.log("Added Button Listener");
       this.addTask();
     });
   }
@@ -26,7 +26,7 @@ export default class ToDos {
   /* Shows all Tasks */
   showAll() {
     console.log("Show All");
-    this.parentElement.innerHTML = '';
+    this.parentElement.innerHTML = "";
     renderTaskList(this.parentElement, this.taskList);
   }
 
