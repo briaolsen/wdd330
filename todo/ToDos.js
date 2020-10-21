@@ -15,7 +15,7 @@ export default class ToDos {
   addTask() {
     console.log("Add Task");
     const inputTask = this.inputElement.value;
-    this.taskList.push({ description: inputTask, checked: "false" });
+    this.taskList.push({ description: inputTask, checked: false });
     this.addTaskListener();
     this.showAll();
   }
