@@ -3,7 +3,7 @@ export default class ToDos {
     this.parentElement = document.getElementById(elementId);
     this.addButton = document.getElementById(addButtonId);
     this.inputElement = document.getElementById(inputId);
-    this.taskList = [{description: "First Task", checked: ""}];
+    this.taskList = [{description: "First Task", checked: "false"}];
 
     this.addButton.addEventListener('click', (e) => {
       console.log("Added Button Listener");
@@ -15,13 +15,13 @@ export default class ToDos {
   addTask() {
     console.log("Add Task");
     const inputTask = this.inputElement.value;
-    this.taskList.push({ description: inputTask, checked: "" });
+    this.taskList.push({ description: inputTask, checked: "false" });
     this.addTaskListener();
     this.showAll();
   }
 
   /* Removes a Task from the List */
-  removeTask(taskNum) {}
+  removeTask() {}
 
   /* Shows all Tasks */
   showAll() {
@@ -40,7 +40,9 @@ export default class ToDos {
   addTaskListener() {}
 
   /* Updates the Number of Remaining Tasks to Complete */
-  updateRemaining() {}
+  updateRemaining() {
+
+  }
 
   /* Updates a Task as Completed or Incomplete */
   updateTask() {}
@@ -56,12 +58,33 @@ function renderOneTask(task) {
   const item = document.createElement("div");
   item.className = "todo";
 
+  const label = document.createElement("label");
+  label.className = "container";
+  label.innerHTML = task.description;
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = task.checked;
+
+  const span = document.createElement("span");
+  span.className = "checkmark";
+  
+  const button = document.createElement("div");
+  button.className = "remove-btn";
+  button.innerHTML = "X";
+
+  item.appendChild(label);
+  item.appendChild(checkbox);
+  item.appendChild(span);
+  item.appendChild(button);
+
+  /*
   item.innerHTML = `
     <label class="container">${task.description}
       <input type="checkbox" ${task.checked}>
       <span class="checkmark"></span>
     </label>
     <div class="remove-btn">X</div>`;
-
+*/
   return item;
 }
