@@ -21,7 +21,10 @@ export default class ToDos {
   }
 
   /* Removes a Task from the List */
-  removeTask() {}
+  removeTask(i) {
+    tasks.splice(i, 1);
+    this.showAll();
+  }
 
   /* Shows all Tasks */
   showAll() {
@@ -45,16 +48,26 @@ export default class ToDos {
   }
 
   /* Updates a Task as Completed or Incomplete */
-  updateTask() {}
+  updateTask(i) {
+    if (tasks[i].checked === true) {
+      tasks[i].checked = false;
+    } else {
+      tasks[i].checked = true;
+    }
+  }
 }
 
 function renderTaskList(parent, tasks) {
+  for (let i = 0; i < tasks.length; i++) {
+    parent.appendChild(renderOneTask(task, i));
+  }
+  /*
   tasks.forEach((task) => {
-    parent.appendChild(renderOneTask(task));
-  });
+    parent.appendChild(renderOneTask(task, ));
+  });*/
 }
 
-function renderOneTask(task) {
+function renderOneTask(task, numTask) {
   const item = document.createElement("div");
   item.className = "todo";
 
@@ -65,6 +78,9 @@ function renderOneTask(task) {
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.checked = task.checked;
+  checkbox.addEventListener('click', e => {
+    updateTask(numTask);
+  });
 
   const span = document.createElement("span");
   span.className = "checkmark";
@@ -72,6 +88,9 @@ function renderOneTask(task) {
   const button = document.createElement("div");
   button.className = "remove-btn";
   button.innerHTML = "X";
+  button.addEventListener('click', e => {
+    removeTask(numTask);
+  });
 
   label.appendChild(checkbox);
   label.appendChild(span);
@@ -86,6 +105,6 @@ function renderOneTask(task) {
       <span class="checkmark"></span>
     </label>
     <div class="remove-btn">X</div>`;
-*/
+  */
   return item;
 }
