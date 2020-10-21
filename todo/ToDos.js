@@ -73,9 +73,10 @@ function renderOneTask(task) {
   button.className = "remove-btn";
   button.innerHTML = "X";
 
+  label.appendChild(checkbox);
+  label.appendChild(span);
+
   item.appendChild(label);
-  item.appendChild(checkbox);
-  item.appendChild(span);
   item.appendChild(button);
 
   /*
