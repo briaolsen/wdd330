@@ -4,6 +4,7 @@ export default class ToDos {
     this.addButton = document.getElementById(addButtonId);
     this.inputElement = document.getElementById(inputId);
     this.taskList = [{description: "First Task", checked: false}];
+    this.display = "all";
 
     this.addButton.addEventListener('click', (e) => {
       console.log("Added Button Listener");
@@ -16,14 +17,29 @@ export default class ToDos {
     console.log("Add Task");
     const inputTask = this.inputElement.value;
     this.taskList.push({ description: inputTask, checked: false });
-    this.addTaskListener();
-    this.showAll();
+    this.displayTasks();
+  }
+
+  displayTasks() {
+    switch (this.display) {
+      case "all":
+        this.showAll();
+        break;
+      case "active":
+        this.showActive();
+        break;
+      case "completed":
+        this.showCompleted();
+        break;
+      default:
+        this.showAll();
+    }
   }
 
   /* Removes a Task from the List */
   removeTask(i) {
     tasks.splice(i, 1);
-    this.showAll();
+    this.displayTasks();
   }
 
   /* Shows all Tasks */
@@ -69,7 +85,7 @@ export default class ToDos {
     checkbox.type = "checkbox";
     checkbox.checked = task.checked;
     checkbox.addEventListener('click', e => {
-      updateTask(numTask);
+      this.updateTask(numTask);
     });
   
     const span = document.createElement("span");
@@ -79,7 +95,7 @@ export default class ToDos {
     button.className = "remove-btn";
     button.innerHTML = "X";
     button.addEventListener('click', e => {
-      removeTask(numTask);
+      this.removeTask(numTask);
     });
   
     label.appendChild(checkbox);
@@ -101,7 +117,7 @@ export default class ToDos {
 
   createTaskList() {
     for (let i = 0; i < this.taskList.length; i++) {
-      this.parentElement.appendChild(makeTask(this.taskList[i], i));
+      this.parentElement.appendChild(this.makeTask(this.taskList[i], i));
     }
     /*
     tasks.forEach((task) => {
