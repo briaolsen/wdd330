@@ -38,7 +38,7 @@ export default class ToDos {
 
   /* Removes a Task from the List */
   removeTask(i) {
-    tasks.splice(i, 1);
+    this.taskList.splice(i, 1);
     this.displayTasks();
   }
 
