@@ -50,10 +50,10 @@ export default class ToDos {
 
   /* Updates a Task as Completed or Incomplete */
   updateTask(i) {
-    if (tasks[i].checked === true) {
-      tasks[i].checked = false;
+    if (this.taskList[i].checked === true) {
+      this.taskList[i].checked = false;
     } else {
-      tasks[i].checked = true;
+      this.taskList[i].checked = true;
     }
   }
 
@@ -100,8 +100,8 @@ export default class ToDos {
   }
 
   createTaskList() {
-    for (let i = 0; i < this.tasks.length; i++) {
-      this.parentElement.appendChild(makeTask(this.tasks[i], i));
+    for (let i = 0; i < this.taskList.length; i++) {
+      this.parentElement.appendChild(makeTask(this.taskList[i], i));
     }
     /*
     tasks.forEach((task) => {
