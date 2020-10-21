@@ -3,7 +3,7 @@ export default class ToDos {
     this.parentElement = document.getElementById(elementId);
     this.addButton = document.getElementById(addButtonId);
     this.inputElement = document.getElementById(inputId);
-    this.taskList = [{description: "First Task", checked: "false"}];
+    this.taskList = [{description: "First Task", checked: false}];
 
     this.addButton.addEventListener('click', (e) => {
       console.log("Added Button Listener");
@@ -59,7 +59,7 @@ export default class ToDos {
 
 function renderTaskList(parent, tasks) {
   for (let i = 0; i < tasks.length; i++) {
-    parent.appendChild(renderOneTask(task, i));
+    parent.appendChild(renderOneTask(tasks[i], i));
   }
   /*
   tasks.forEach((task) => {
