@@ -1,76 +1,103 @@
+import * as ls from './ls.js'
+
+
+/******************************************************
+ * CLASS: TODOS
+ * Creates a todo list
+ ******************************************************/
 export default class ToDos {
-  constructor(elementId, optionsId, addButtonId, inputId) {
+
+  constructor(elementId, filtersId, addButtonId, inputId) {
     this.parentElement = document.getElementById(elementId);
-    this.numTasks = this.buildSortingOptions(document.getElementById(optionsId));
+    this.numTasks = this.buildFilters(document.getElementById(filtersId));
     this.addButton = document.getElementById(addButtonId);
     this.inputElement = document.getElementById(inputId);
-    this.taskList = [{description: "First Task", checked: false}];
+    this.taskList = ls.getLocalStorage();
     this.display = "all";
 
     this.addButton.addEventListener('click', (e) => {
-      console.log("Added Button Listener");
+      this.addTask();
+    });
+
+    this.inputElement.addEventListener('submit', e => {
       this.addTask();
     });
   }
 
-  /* Builds the Sorting Options and adds event listeners */
-  buildSortingOptions(options) {
+  /******************************************************
+   * BUILD FILTERS
+   * Builds the filter options and adds event listeners
+   ******************************************************/
+  buildFilters(filters) {
+
     const numTasks = document.createElement("div");
     numTasks.id = "num-tasks";
     numTasks.innerHTML = "# tasks left";
 
+    // BUILD "ALL" FILTER
     const allBtn = document.createElement("div");
-    allBtn.className = "optionsCurrent";
+    allBtn.className = "currentFilter";
     allBtn.id = "all-btn";
     allBtn.innerHTML = "All";
     allBtn.addEventListener('click', e => {
-      allBtn.className = "optionsCurrent";
-      activeBtn.className = "options";
-      completeBtn.className = "options";
+      allBtn.className = "currentFilter";
+      activeBtn.className = "filter";
+      completeBtn.className = "filter";
       this.display = "all";
       this.displayTasks();
     });
 
+    // BUILD "ACTIVE" FILTER
     const activeBtn = document.createElement("div");
-    activeBtn.className = "options";
+    activeBtn.className = "filter";
     activeBtn.id = "active-btn";
     activeBtn.innerHTML = "Active";
     activeBtn.addEventListener('click', e => {
-      allBtn.className = "options";
-      activeBtn.className = "optionsCurrent";
-      completeBtn.className = "options";
+      allBtn.className = "filter";
+      activeBtn.className = "currentFilter";
+      completeBtn.className = "filter";
       this.display = "active";
       this.displayTasks();
     });
 
+    // FILL "COMPLETE" FILTER
     const completeBtn = document.createElement("div");
-    completeBtn.className = "options";
+    completeBtn.className = "filter";
     completeBtn.id = "complete-btn";
     completeBtn.innerHTML = "Completed";
     completeBtn.addEventListener('click', e => {
-      allBtn.className = "options";
-      activeBtn.className = "options";
-      completeBtn.className = "optionsCurrent";
+      allBtn.className = "filter";
+      activeBtn.className = "filter";
+      completeBtn.className = "currentFilter";
       this.display = "completed";
       this.displayTasks();
     });
 
-    options.appendChild(numTasks);
-    options.appendChild(allBtn);
-    options.appendChild(activeBtn);
-    options.appendChild(completeBtn);
+    // APPEND FILTERS TO FILTERS-DIV
+    filters.appendChild(numTasks);
+    filters.appendChild(allBtn);
+    filters.appendChild(activeBtn);
+    filters.appendChild(completeBtn);
 
     return numTasks;
   }
 
-  /* Adds a Task to the List */
+  /******************************************************
+   * ADD TASK
+   * Adds a Task to the List
+   ******************************************************/
   addTask() {
     console.log("Add Task");
     const inputTask = this.inputElement.value;
     this.taskList.push({ description: inputTask, checked: false });
+    ls.saveLocalStorage(this.taskList);
     this.displayTasks();
   }
 
+  /******************************************************
+   * UPDATE TASK NUM
+   * Updates the current number of tasks remaining
+   ******************************************************/
   updateTaskNum() {
     let t = 0;
     for(let i = 0; i < this.taskList.length; i++){
@@ -78,10 +105,19 @@ export default class ToDos {
         t++;
       }
     }
-    this.numTasks.innerHTML = `${t} tasks left`;
+
+    if(t === 1) {
+      this.numTasks.innerHTML = `${t} task left`;
+    } else {
+      this.numTasks.innerHTML = `${t} tasks left`;
+    }
   }
 
-  /* Checks the current display option and displays the appropriate tasks */
+  /******************************************************
+   * DISPLAY TASKS
+   * Checks the current display option and calls for the 
+   * display of the appropriate tasks
+   ******************************************************/
   displayTasks() {
     switch (this.display) {
       case "all":
@@ -100,13 +136,20 @@ export default class ToDos {
     this.updateTaskNum();
   }
 
-  /* Removes a Task from the List */
+  /******************************************************
+   * REMOVE TASK
+   * Removes a task from the list and displays again
+   ******************************************************/
   removeTask(i) {
     this.taskList.splice(i, 1);
+    ls.saveLocalStorage(this.taskList);
     this.displayTasks();
   }
 
-  /* Shows all Tasks */
+  /******************************************************
+   * SHOW ALL 
+   * Displays all the tasks, completed and not completed
+   ******************************************************/
   showAll() {
     console.log("Show All");
     this.parentElement.innerHTML = "";
@@ -115,7 +158,10 @@ export default class ToDos {
     }
   }
 
-  /* Shows Active Tasks */
+  /******************************************************
+   * SHOW ACTIVE
+   * Displays all the active tasks (incompleted)
+   ******************************************************/
   showActive() {
     console.log("Show Active");
     this.parentElement.innerHTML = "";
@@ -126,7 +172,10 @@ export default class ToDos {
     }
   }
 
-  /* Shows Completed Tasks */
+  /******************************************************
+   * SHOW COMPLETED 
+   * Displays all the completed tasks
+   ******************************************************/
   showCompleted() {
     console.log("Show Completed");
     this.parentElement.innerHTML = "";
@@ -137,24 +186,31 @@ export default class ToDos {
     }
   }
 
-  /* Adds Listeners to Each Task */
-  addTaskListener() {}
-
-  /* Updates a Task as Completed or Incomplete */
+  /******************************************************
+   * SHOW ALL 
+   * Updates a task to be complete or incomplete depending
+   * on how it was already marked.
+   ******************************************************/
   updateTask(i) {
     if (this.taskList[i].checked === true) {
       this.taskList[i].checked = false;
     } else {
       this.taskList[i].checked = true;
     }
+    ls.saveLocalStorage(this.taskList);
     this.displayTasks();
   }
 
-  /* Create the task to append to the list */
+  /******************************************************
+   * MAKE TASK
+   * Creates the HTML needed for the task
+   ******************************************************/
   makeTask(task, numTask) {
+    // Creates the parent div
     const item = document.createElement("div");
     item.className = "todo";
   
+    // Create the label for the checkbox
     const label = document.createElement("label");
     label.className = "container";
     if(task.checked) {
@@ -163,6 +219,7 @@ export default class ToDos {
       label.innerHTML = task.description;
     }
   
+    // Create the checkbox, add event listener 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = task.checked;
@@ -175,9 +232,11 @@ export default class ToDos {
       this.updateTask(numTask);
     });
   
+    // Create the checkmark for css
     const span = document.createElement("span");
     span.className = "checkmark";
     
+    // Create the remove button div
     const button = document.createElement("div");
     button.className = "remove-btn";
     button.innerHTML = "X";
@@ -185,9 +244,11 @@ export default class ToDos {
       this.removeTask(numTask);
     });
   
+    // Append the checkbox and span to the label
     label.appendChild(checkbox);
     label.appendChild(span);
   
+    // Append the label and button to the parent div
     item.appendChild(label);
     item.appendChild(button);
 
@@ -196,55 +257,3 @@ export default class ToDos {
 
 }
 
-/*
-function renderTaskList(parent, tasks) {
-  for (let i = 0; i < tasks.length; i++) {
-    parent.appendChild(renderOneTask(tasks[i], i));
-  }
-  /*
-  tasks.forEach((task) => {
-    parent.appendChild(renderOneTask(task, ));
-  });
-}*/
-
-function renderOneTask(task, numTask) {
-  const item = document.createElement("div");
-  item.className = "todo";
-
-  const label = document.createElement("label");
-  label.className = "container";
-  label.innerHTML = task.description;
-
-  const checkbox = document.createElement("input");
-  checkbox.type = "checkbox";
-  checkbox.checked = task.checked;
-  checkbox.addEventListener('click', e => {
-    updateTask(numTask);
-  });
-
-  const span = document.createElement("span");
-  span.className = "checkmark";
-  
-  const button = document.createElement("div");
-  button.className = "remove-btn";
-  button.innerHTML = "X";
-  button.addEventListener('click', e => {
-    removeTask(numTask);
-  });
-
-  label.appendChild(checkbox);
-  label.appendChild(span);
-
-  item.appendChild(label);
-  item.appendChild(button);
-
-  /*
-  item.innerHTML = `
-    <label class="container">${task.description}
-      <input type="checkbox" ${task.checked}>
-      <span class="checkmark"></span>
-    </label>
-    <div class="remove-btn">X</div>`;
-  */
-  return item;
-}
