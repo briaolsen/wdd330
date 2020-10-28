@@ -9,17 +9,17 @@ export default class Comments {
         type: "hikes",
         name: "Bechler Falls",
         date: new Date(),
-        content: "Comment #1"
+        content: "Comment about Bechler Falls"
       }
     ]
   }
 
-  showCommentsList(){
+  showCommentsList(commentsList){
     console.log("Show Comments List");
     let container = document.createElement("div");
     container.className = "comments";
     
-    renderCommentsList(container, this.getAllComments());
+    renderCommentsList(container, commentsList);
     return container;
   }
   
@@ -29,7 +29,7 @@ export default class Comments {
 
   filterCommentsByName(hikeName) {
      let newList = [];
-     for (let i = 0; i < this.comments.length(); i++) {
+     for (let i = 0; i < this.comments.length; i++) {
         if (this.comments[i].name === hikeName) {
            newList.push(this.comments[i])
         }
@@ -42,7 +42,7 @@ export default class Comments {
     const newComment = {
       type: tag,
       name: hikeName,
-      date:  new Date(),
+      date: new Date(),
       content: comment
     }
     
