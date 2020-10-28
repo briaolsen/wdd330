@@ -4,6 +4,14 @@ export default class Comments {
   
   constructor(){
     this.comments = ls.loadLocalStorage();
+    this.comments = [
+      {
+        type: "hikes",
+        name: "Bechler Falls",
+        date: new Date(),
+        content: "Comment #1"
+      }
+    ]
   }
 
   showCommentsList(){
@@ -34,7 +42,7 @@ export default class Comments {
     const newComment = {
       type: tag,
       name: hikeName,
-      date: newDate(),
+      date:  new Date(),
       content: comment
     }
     
