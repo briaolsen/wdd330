@@ -77,6 +77,8 @@ export default class Hikes {
     this.parentElement.appendChild(commentList);
     // show the back button
     this.backButton.classList.remove('hidden');
+    let inputs = this.buildCommentInput(hikeName);
+    this.parentElement.appendChild(inputs);
   } 
   // in order to show the details of a hike ontouchend we will need to attach a listener AFTER the list of hikes has been built. The function below does that.
   addHikeListener() {
@@ -102,10 +104,20 @@ export default class Hikes {
     return backButton;
   }
 
-  buildCommentInput() {
+  buildCommentInput(hikeName) {
+    const inputDiv = document.createElement('div');
     const input = document.createElement('input');
     input.type = "text";
+    const button = document.createElement('button');
+    button.innerText = "Add Comment";
 
+    button.addEventListener('click', () => {
+      this.comments.addComment("hikes", hikeName, input.value);
+      this.showOneHike(hikeName);
+    });
+    inputDiv.appendChild(input);
+    inputDiv.appendChild(button);
+    return inputDiv;
   }
 }
 
