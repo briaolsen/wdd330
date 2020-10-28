@@ -1,6 +1,6 @@
 import * as ls from './ls.js' ;
 
-export class Comments {
+export default class Comments {
   
   constructor(){
     this.comments = ls.loadLocalStorage();
