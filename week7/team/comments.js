@@ -1,4 +1,4 @@
-import * as ls from '/ls.js' ;
+import * as ls from './ls.js' ;
 
 export class Comments {
   
@@ -7,7 +7,6 @@ export class Comments {
   }
 
   showCommentsList(){
-    //something
     console.log("Show Comments List");
     let container = document.createElement("div");
     container.className = "comments";
