@@ -4,14 +4,7 @@ export default class Comments {
   
   constructor(){
     this.comments = ls.loadLocalStorage();
-    this.comments = [
-      {
-        type: "hikes",
-        name: "Bechler Falls",
-        date: new Date(),
-        content: "Comment about Bechler Falls"
-      }
-    ]
+
   }
 
   showCommentsList(commentsList){
@@ -61,7 +54,7 @@ function renderCommentsList(container, comments) {
 
 function renderComment(comment) {
   const item = document.createElement("div");
-  item.innerHTML = `<h2>${comment.name}</h2>
+  item.innerHTML = `<h3>${comment.name} - ${comment.date}</h3>
   <p class="comment">${comment.content}</p>`;
   return item;
 }
