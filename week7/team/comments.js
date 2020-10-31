@@ -4,7 +4,6 @@ export default class Comments {
   
   constructor(){
     this.comments = ls.loadLocalStorage();
-
   }
 
   showCommentsList(commentsList){

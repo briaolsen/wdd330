@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Week 7 Notes</title>
+  <link id="style" rel="stylesheet" href="../css/notes.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <script>
+    $(document).ready(function () {
+      $('#head').load('../partials/header.html');
+      $('#style').attr('href', '../css/notes.css');
+    });
+  </script>
+
+  <div id="head">
+
+  </div>
+
+  <div id="notes">
+    <h1>Week 7 Notes</h1>
+
+    <h2>Examples</h2>
+    <ul>
+      <li><a href="hero.html">Hero Practice</a></li>
+    </ul>
+
+    <h2>Javascript: Novice to Ninja</h2>
+
+    <h3>Chapter 11 - Further Functions</h3>
+
+    <h5>Function Properties and Methods</h5>
+    <ul>
+      <li>Functions are first-class objects - can have properties and methods themselves and be passed as any other
+        value</li>
+      <li>Functions have properties and methods - .length</li>
+      <li>Call() - can be used to set the value of "this" inside a function - this will be first argument in parameters,
+        null if not used </li>
+      <li>Can add custom properties aka .description = "blah describe blah"</li>
+      <li>Memoization - result caching, store the result of a function in the .cache to be used later</li>
+      <li>Immediately Invoked Function Expression - IIFE: anonymous function that is invoked as soon as it's defined by
+        using parentheses at the end of the function definition and surrounding the function in parentheses (function()
+        {})(); </li>
+      <li>Temporary Variables - can be placed in an IFEE or block of code using const/let</li>
+      <li>Functions Define and Rewrite Themselves - Init-Time Branching - assign an anonymous function to a variable
+        that has the same name as the function</li>
+    </ul>
+
+    <h5>Types of Functions</h5>
+    <ul>
+      <li>Recursive Function - invokes itself until a condition is met (ex. factorial)</li>
+      <li>Callbacks</li>
+      <li>Event-driven Asynchronous Programming - JS is single-threaded, use a callback that's invoked when an event
+        happens to allow the code to be run out of order</li>
+      <li><a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">Event-Loop</a></li>
+      <li>Callback hell - when one or more callbacks are used creating a large number of nested blocks</li>
+    </ul>
+
+    <h5>Promises</h5>
+    <ul>
+      <li>Promise - represents the future result of an asynchronous operation - help simplify callbacks</li>
+      <li>Calls a pending, asynchronous operation (unsettled), finishes (settled) - resolved or rejected</li>
+      <li>(Promise layout in script)</li>
+      <li>.then - used after a promise has been settled, first argument is a function for resolved, second rejected (or
+        you can do a .catch instead for rejected)</li>
+    </ul>
+
+    <script>
+      /*
+      const promise = new Promise((resolve, reject) => {
+        // initialization code goes here
+        if (success) {
+          resolve(value);
+        } else {
+          reject(error);
+        }
+      });*/
+
+      const dice = {
+        sides: 6,
+        roll() {
+          return Math.floor(this.sides * Math.random()) + 1;
+        }
+      }
+
+      const promise = new Promise((resolve, reject) => {
+        const n = dice.roll();
+        setTimeout(() => {
+          (n > 1) ? resolve(n) : reject(n);
+        }, n * 1000);
+      });
+
+      promise.then(result => console.log(`Yes! I rolled a ${result}`), result => console.log(`Drat! ... I rolled a ${result}`));
+      // OR
+      promise.then(result => console.log(`I rolled a ${result}`))
+        .catch(result => console.log(`Drat! ... I rolled a ${result}`));
+
+    </script>
+
+
+
+
+    <h2>Questions</h2>
+    <ol>
+      <li>I'm wasting a lot of time pushing to the github and waiting for everything to update before I can see my
+        stuff. Then sometimes the css doesn't refresh at all. I'd just like a faster way to look at what I've done. I
+        know I've had trouble with this in past classes as well.</li>
+    </ol>
+
+  </div>
+
+</body>
+
+</html>
