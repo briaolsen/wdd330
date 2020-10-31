@@ -25,7 +25,9 @@
 
     <h2>Examples</h2>
     <ul>
-      <li><a href="hero.html">Hero Practice</a></li>
+      <li><a href="team">Team Project</a></li>
+      <li><a href="ajax.html">AJAX Example</a></li>
+      <li><a href="todo.html">Todo List Example</a></li>
     </ul>
 
     <h2>Javascript: Novice to Ninja</h2>
@@ -57,6 +59,7 @@
         happens to allow the code to be run out of order</li>
       <li><a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">Event-Loop</a></li>
       <li>Callback hell - when one or more callbacks are used creating a large number of nested blocks</li>
+      <li>Functions can return functions</li>
     </ul>
 
     <h5>Promises</h5>
@@ -66,7 +69,36 @@
       <li>(Promise layout in script)</li>
       <li>.then - used after a promise has been settled, first argument is a function for resolved, second rejected (or
         you can do a .catch instead for rejected)</li>
+      <li>Can chain "then" methods together </li>
     </ul>
+
+    <h5>Async Functions</h5>
+    <ul>
+      <li>Async keyword - allow you to write asynchronous code as if it were synchronous</li>
+      <li>use the "await" operator before an asynchronous function, wraps the return value in a promise that can be
+        assigned to a variable</li>
+    </ul>
+
+    <h5>Closures</h5>
+    <ul>
+      <li>A reference to a variable that was created inside the scope of another function, but kept alive and used in
+        another part of the program</li>
+      <li>A function inside another function has access to the variables declared in the outer function</li>
+      <li>Formed when the inner function is returned by the outer function, maintaining access to any variables declared
+        inside the enclosing function</li>
+      <li>Formed when a function returns another function that then maintains access to any variables created in the
+        original function's scope (can change them also)</li>
+    </ul>
+
+    <h5>Generators</h5>
+    <ul>
+      <li>* asterisk after the function declaration ( function* exampleGenerator(){} )</li>
+      <li>Calling a generator function returns a Generator object that can be used to create an iterator that implements
+        a next() method that returns a value every time the next() method is called</li>
+      <li>Use "next()" to call the next iterator</li>
+
+    </ul>
+
 
     <script>
       /*
@@ -98,16 +130,124 @@
       promise.then(result => console.log(`I rolled a ${result}`))
         .catch(result => console.log(`Drat! ... I rolled a ${result}`));
 
+      function outer() {
+        const outside = 'Outside!';
+        function inner() {
+          const inside = 'Inside!';
+          console.log(outside);
+          console.log(inside);
+        }
+        console.log(outside);
+        inner();
+      }
+      outer();
+
+      // GENERATOR
+      function* fibonacci(a, b) {
+        let [prev, current] = [a, b];
+        while (true) {
+          [prev, current] = [current, prev + current];
+          yield current;
+        }
+      }
+      const sequence = fibonacci(1, 1);
+      sequence.next();
+      sequence.next();
+      sequence.next();
     </script>
 
+    <h5>Functional Programming</h5>
+    <ul>
+      <li>Functional programming is a programming paradigm (like object oriented or procedural programming) - JavaScript
+        is multi-paradigm</li>
+      <li>Pure Functions - 1) return value only depends on arguments 2) no side-effects, doesn't change anything
+        elsewhere, returns values doesn't change the original 3) Referential Transparency - always return the same
+        result with same arguments</li>
+      <li>1) Must have 1+ arguments 2) Must have a return value</li>
+      <li>Functional Programming uses pure functions as building blocks of a program</li>
+    </ul>
+
+    <h5>Higher-Order Function</h5>
+    <ul>
+      <li>Higher-order functions - accept another function as an argument, or return another function as a result, or
+        both</li>
+    </ul>
+
+    <h5>Currying</h5>
+    <ul>
+      <li>Curried Function: when not all arguments have been supplied so the function returns another function that
+        retains the arguments provided before and expects the remaining arguments that were omitted. Result only
+        returned when all expected arguments have been provided.</li>
+      <li>Want to use the first set of arguments multiple times with other arugments</li>
+    </ul>
+
+    <h3>Chapter 13 - AJAX</h3>
+
+    <h5>History</h5>
+    <ul>
+      <li>A technique that allows web pages to communicate asynchronously with a server and dynamically updates web
+        pages without reloading</li>
+      <li>AJAX - Asynchronous, JavaScript, XML</li>
+      <li>API - application programming interface - a collection of methods that allows external access to another
+        program or service</li>
+      <li>Fetch API - provides a global fetch() method, takes the URL and returns a promise that resolves tot he
+        response returned from the URL</li>
+      <li>Response - object that's returned when a promise is fulfilled, has properties and methods to process the
+        response</li>
+    </ul>
+
+    <h5>Properties & Methods</h5>
+    <ul>
+      <li>Properties - ok (true/false), headers, url, redirected, type</li>
+      <li>redirect() - redirect to another URL with a new promise</li>
+      <li>text() - takes a stream of text from the response, reads it, then returns a promise that resolves to a
+        USVString object</li>
+      <li>blob() - read a file of raw data, returns a promose with a blob object</li>
+      <li>json() - transforms response to a Json object</li>
+      <li>Request object - Request() constructor, properties -> url, method (get, post, put, patch, delete), headers,
+        mode, cache, credentials, redirect</li>
+    </ul>
+
+    <h5>Headers</h5>
+    <ul>
+      <li>Headers - used to pass on any additional information about a request or response</li>
+      <li>has() - return true/false</li>
+      <li>get() - return value of the header provided as an argument</li>
+      <li>set() - set value of an existing header, or create a new header with the values</li>
+      <li>append() - adds a new header to the headers object</li>
+      <li>delete() - removes the header provided as an argument</li>
+      <li>keys, values, entries () - iterators used to iterate over the headers key, values, or entries</li>
+
+    </ul>
 
 
+    <script>
+      /*
+      const request = new Request('https://example.com/data', {
+        method: 'GET',
+        mode: 'cors',
+        redirect: 'follow',
+        cache: 'no-cache'
+      });
+
+      fetch(request)
+      .then( // do something with the response )
+      .catch( // handle any errors)
+
+      fetch('https://example.com/data', {
+        method: 'GET',
+        mode: 'cors',
+        redirect: 'follow',
+        cache: 'no-cache'
+      })
+      .then( // do something with the response )
+      .catch ( // handle any errors)
+*/
+    </script>
 
     <h2>Questions</h2>
     <ol>
-      <li>I'm wasting a lot of time pushing to the github and waiting for everything to update before I can see my
-        stuff. Then sometimes the css doesn't refresh at all. I'd just like a faster way to look at what I've done. I
-        know I've had trouble with this in past classes as well.</li>
+      <li></li>
     </ol>
 
   </div>
