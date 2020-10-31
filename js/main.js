@@ -25,7 +25,8 @@ function makeDirectory() {
       url: "week5",
     },
     {
-      label: "Week 6 Notes"
+      label: "Week 6 Notes",
+      url: "",
     },
     {
       label: "Week 7 Notes",
