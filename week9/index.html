@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Week 9 Notes</title>
+  <link id="style" rel="stylesheet" href="../css/notes.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <script>
+    $(document).ready(function () {
+      $('#head').load('../partials/header.html');
+      $('#style').attr('href', '../css/notes.css');
+    });
+  </script>
+
+  <div id="head">
+
+  </div>
+
+  <div id="notes">
+    <h1>Week 9 Notes</h1>
+
+    <h2>Coding Examples and Activities</h2>
+    <ul>
+      <li><a href="team/index.html">Team Activity</a></li>
+
+    </ul>
+
+    <h2>JavaScript: Novice to Ninja</h2>
+
+    <h3>Chapter 9 - The Window Object</h3>
+
+    <h5>The Browser Object Model</h5>
+    <ul>
+      <li>Browser Object Model (BOM) - collection of properties and methods that contain info about the browser and
+        computer screen</li>
+      <li>available through the "window" object</li>
+      <li>window is a global object - global variables are properties of the window object - should refer to global
+        variables without using the window object</li>
+      <li>some functions are methods of the window object - parseInt, isNan</li>
+      <li>alert, confirm, prompt - stop everything </li>
+      <li>navigator - Navigator object contains information about the browser being used: userAgent - return info about
+        the browser and operating system being system - window.navigator.userAgent</li>
+      <li>window.location - info about the URL of the current page: href, protocol, host, hostname, port, pathname,
+        search, hash, origin, reload(), assign(), replace(), toString()</li>
+      <li>window.history - access info about previously visited pages in current browser session: .length, go(),
+        forward(), back()</li>
+      <li>Popup Windows: window.open() - parameters: url, window title, list of attributes - opens a popup window, use
+        .close() to close it, ,moveTo(x, y) move to location on the screen, resizeTo(x, y) </li>
+      <li>window.screen - info about the screen the browser is displayed on: height, width, availWidth, availHeight,
+        colorDepth - more useful on mobile</li>
+      <li>document.write() = writes a string of text to the page, replace the whole document, can add HTML, or you can
+        add it in script tags and not replace the whole document, just parts </li>
+    </ul>
+
+    <h5>Cookies</h5>
+    <ul>
+      <li>small files that are saved locally on a user's computer</li>
+      <li>can only be read by a web page from the same domain that set them, limited to 4kb of data but 20 cookies
+        allowed per domain</li>
+      <li>personalize user's browsing experience, keep track of user choices, authentication, tracking users</li>
+      <li>being replaced by localStorage</li>
+      <li>document.cookie creates a cookie, assign it to something such as 'name=Superman' and additional assignments
+        appends it instead of overwriting, you can over write by redoing the same first part 'name=Batman' </li>
+      <li>document.cookie will give the current contents of the cookie, can use the split() method to break the string
+        into an array each containing the name/value pair and use a for loop .split("; "</li>
+      <li>cookies are session cookies by default - deleted once browser session is finished, add "; expires=date" to the
+        end of the cookie</li>
+      <li>cookies can only be read by pages inside the same directory and domain as the file was set by default, can change the path by adding "; path=/" or "; domain=domainName"</li>
+      <li>add "; secure" to the end to ensure only transmitted over a secure HTTPS network</li>
+      <li>delete a cookie - set expiry to sometime in the past</li>
+    </ul>
+
+    <script>
+
+      document.cookie = 'hero=true';
+      document.cookie = 'city=Metropolis';
+      document.cookie = 'name=Batman';
+      document.cookie = 'city=Gotham';  //overwrite Metropolis
+
+      const cookies = document.cookie.split("; ");
+      for (crumb of cookies) {
+        const [key, value] = crumb.split("=");
+        console.log(`The value of ${key} is ${value}`);
+      }
+
+      /*
+        << The value of name is Batman
+        The value of hero is true
+        The value of city is Gotham
+      */
+
+      const expiryDate = new Date();
+      const tomorrow = expiryDate.getTime() + 1000 * 60 * 60 * 24;
+      expiryDate.setTime(tomorrow);
+      document.cookie = `name=Batman; expires=${expiryDate.toUTCString()}`; // OR:
+      document.cookie = 'name=Batman; max-age=86400' // 86400 secs = 1 day
+
+      document.cookie = 'name=Batman; path=/' // OR: 
+      document.cookie = 'name=Batman; domain=sitepoint.com';
+    </script>
+
+    <h5>Timing Functions</h5>
+    <ul>
+      <li>window.setTimeout() - accepts a callbak to a function as its first parameter and a number of milliseconds as its second parameter "window.setTimeout( () => alert("Time's Up!"), 3000);" returns an int used to reference that particular timeout such as with window.clearTimeout(5)</li>
+      <li>window.setInterval() - repeatedly invokes the callback function after every given number of milliseconds - stop using window.clearInterval()</li>
+      <li>setTimeOut() and setInterval() can be used to animate elements on a page</li>
+    </ul>
+
+    <script>
+      function chant(){ console.log('Beetlejuice'); }
+      const summon = window.setInterval(chant,1000);
+      window.clearInterval(summon);
+    </script>
+
+    <h5>Animation</h5>
+    <ul>
+      <li>Keyframes - used to animate an element, use @keyframes rule, include @-webkit-keyframes</li>
+      <li>"@-webkit-keyframes myAnimation { animation here }" "@keyframes myAnimation {animation keyframes}"</li>
+      <li>animation-name: used to attach an animation to an element - appearDisappear </li>
+      <li>animation-duration: length of time it takes for one iteration</li>
+      <li>animation-timing-function: how the animation will progress over its duration (ease, linear, ease-in, ease-out,
+        ease-in-out, cubic-bezier, start-stop, step-end, steps(number, direction))</li>
+      <li>animation-iteration-count: lets you define how many times the animation will play through (1, infinite)</li>
+      <li>animation-direction: normal is from 0 to 100% (reverse, alternate, alternate-reverse, normal)</li>
+      <li>animation-delay: define how many milliseconds or seconds to wait before the browser begins the animation</li>
+      <li>animation-fill-mode: defines what happens before the first animation iteration begins and after the last
+        animation iteration concludes (none, forwards, backwards, both)</li>
+      <li>animation-play-state: defines whether the animation is running or paused</li>
+      <li>animation: shorthand version</li>
+    </ul>
+
+    <h3>Chapter 12 - Canvas, SVG, and Drag and Drop</h3>
+
+    <h5>Canvas</h5>
+    <ul>
+      <li>Can draw shapes, lines, arcs, text, gradients, patterns</li>
+      <li>Setting Up: add a "canvas" element to the page, text in between will show up if the browser doesn't support
+        canvas, give id and class, add width and height, border in css page</li>
+      <li>Drawing: uses Canvas JavaScript API</li>
+    </ul>
+
+    <!-- Canvas CSS -->
+    <style>
+      .myCanvas {
+        border: dotted 2px black;
+      }
+    </style>
+
+    <!-- Canvas -->
+    <canvas id="myCanvas" class="myCanvas" width="200" height="200">
+      Sorry! Your browser doesn’t support Canvas.
+    </canvas>
+
+    <canvas id="myCanvas2" class="myCanvas" width="200" height="200">
+      Sorry! Your browser doesn’t support Canvas.
+    </canvas>
+
+    <!-- JavaScript for Canvas -->
+    <script>
+      var canvas = document.getElementById("myCanvas");
+      var context = canvas.getContext("2d"); //where the drawing is rendered
+      context.strokeStyle = "red";
+      var gradient = context.createLinearGradient(0, 0, 0, 200);
+      gradient.addColorStop(0, "blue");
+      gradient.addColorStop(1, "white");
+      context.fillStyle = gradient;
+      context.strokeRect(10, 10, 100, 100);
+      context.fillRect(10, 10, 100, 100);
+
+      /* CAN FILL WITH AN IMAGE PATTERN
+      var img = new Image();
+      img.src = "../images/bg-bike.png";
+      img.onload = function() {
+      var pattern = context.createPattern(img, "repeat");
+      context.fillStyle = pattern;
+      context.fillRect(10, 10, 100, 100);
+      context.strokeRect(10, 10, 100, 100);
+      };
+      */
+
+      var canvas2 = document.getElementById("myCanvas2");
+      var context2 = canvas2.getContext("2d");
+      context2.beginPath();
+      context2.arc(50, 50, 30, 0, Math.PI * 2, true);
+      context2.closePath();
+      context2.strokeStyle = "red";
+      context2.fillStyle = "blue";
+      context2.lineWidth = 3;
+      context2.fill();
+      context2.stroke();
+
+
+    </script>
+
+    <h2>Questions & ToDos</h2>
+    <ol>
+
+    </ol>
+
+  </div>
+
+</body>
+
+</html>

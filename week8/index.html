@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Week 8 Notes</title>
+  <link id="style" rel="stylesheet" href="../css/notes.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <script>
+    $(document).ready(function () {
+      $('#head').load('../partials/header.html');
+      $('#style').attr('href', '../css/notes.css');
+    });
+  </script>
+
+  <div id="head">
+
+  </div>
+
+  <div id="notes">
+    <h1>Week 8 Notes</h1>
+
+    <h2>Coding Examples and Activities</h2>
+    <ul>
+      <li><a href="team/index.html">Team Activity</a></li>
+      <li><a href="../JavaScript30/JSandCSSClock/">JS and CSS Clock</a></li>
+      <li><a href="../JavaScript30/CSSVariables/">CSS Variables</a></li>
+      <li><a href="../JavaScript30/Array1/">Array Cardio 1</a></li>
+      <li><a href="../JavaScript30/FlexPanelGallery/">Flex Panel Gallery</a></li>
+      <li><a href="../JavaScript30/TypeAhead/">AJAX Type Ahead</a></li>
+    </ul>
+
+    <h2>HTML5 and CSS for the Real World</h2>
+
+    <h3>Chapter 8 - Transforms and Transitions</h3>
+
+    <h5>Transforms</h5>
+    <ul>
+      <li>Translation - move elements left, right, up or down</li>
+      <li>"transform: translate(x,y);" "transform: translateX( px);" "transform: translateY( px);"</li>
+      <li>Scaling - scales an element by defined factors horizontally and vertically, one value will scale the whole
+        thing</li>
+      <li>"transform: scale(x,y);" "transform: scale();" "transform: scaleX();" "transform: scaleY();"</li>
+      <li>Rotation - rotates an element around the point of origin, positive = clockwise, negative = counterclockwise
+      </li>
+      <li>"transform: rotate( deg);"</li>
+      <li>Origin - can control the origin from where the transforms are applied</li>
+      <li>"transform-origin: 50% 50%"</li>
+    </ul>
+
+    <h5>Transitions</h5>
+    <ul>
+      <li>Transitions - allow the values of CSS properties to change over time = simple animations</li>
+      <li>transition-property: defines the CSS properties of the element that should be transitioned, "all" being
+        default</li>
+      <li>transition-duration: sets how long the transition will take</li>
+      <li>transition-timing-function: controls the pace of the transition in more detail (ease, linear, ease-in,
+        ease-out, ease-in-out, cubic-bezier)</li>
+      <li>transition-delay: delay before the transition begins</li>
+      <li>"transition: property, duration, timing-function, delay"</li>
+    </ul>
+
+    <h5>Animations</h5>
+    <ul>
+      <li>Keyframes - used to animate an element, use @keyframes rule, include @-webkit-keyframes</li>
+      <li>"@-webkit-keyframes myAnimation { animation here }" "@keyframes myAnimation {animation keyframes}"</li>
+      <li>animation-name: used to attach an animation to an element - appearDisappear </li>
+      <li>animation-duration: length of time it takes for one iteration</li>
+      <li>animation-timing-function: how the animation will progress over its duration (ease, linear, ease-in, ease-out,
+        ease-in-out, cubic-bezier, start-stop, step-end, steps(number, direction))</li>
+      <li>animation-iteration-count: lets you define how many times the animation will play through (1, infinite)</li>
+      <li>animation-direction: normal is from 0 to 100% (reverse, alternate, alternate-reverse, normal)</li>
+      <li>animation-delay: define how many milliseconds or seconds to wait before the browser begins the animation</li>
+      <li>animation-fill-mode: defines what happens before the first animation iteration begins and after the last
+        animation iteration concludes (none, forwards, backwards, both)</li>
+      <li>animation-play-state: defines whether the animation is running or paused</li>
+      <li>animation: shorthand version</li>
+    </ul>
+
+    <h3>Chapter 12 - Canvas, SVG, and Drag and Drop</h3>
+
+    <h5>Canvas</h5>
+    <ul>
+      <li>Can draw shapes, lines, arcs, text, gradients, patterns</li>
+      <li>Setting Up: add a "canvas" element to the page, text in between will show up if the browser doesn't support
+        canvas, give id and class, add width and height, border in css page</li>
+      <li>Drawing: uses Canvas JavaScript API</li>
+    </ul>
+
+    <!-- Canvas CSS -->
+    <style>
+      .myCanvas {
+        border: dotted 2px black;
+      }
+    </style>
+
+    <!-- Canvas -->
+    <canvas id="myCanvas" class="myCanvas" width="200" height="200">
+      Sorry! Your browser doesn’t support Canvas.
+    </canvas>
+
+    <canvas id="myCanvas2" class="myCanvas" width="200" height="200">
+      Sorry! Your browser doesn’t support Canvas.
+    </canvas>
+
+    <!-- JavaScript for Canvas -->
+    <script>
+      var canvas = document.getElementById("myCanvas");
+      var context = canvas.getContext("2d"); //where the drawing is rendered
+      context.strokeStyle = "red";
+      var gradient = context.createLinearGradient(0, 0, 0, 200);
+      gradient.addColorStop(0, "blue");
+      gradient.addColorStop(1, "white");
+      context.fillStyle = gradient;
+      context.strokeRect(10, 10, 100, 100);
+      context.fillRect(10, 10, 100, 100);
+
+      /* CAN FILL WITH AN IMAGE PATTERN
+      var img = new Image();
+      img.src = "../images/bg-bike.png";
+      img.onload = function() {
+      var pattern = context.createPattern(img, "repeat");
+      context.fillStyle = pattern;
+      context.fillRect(10, 10, 100, 100);
+      context.strokeRect(10, 10, 100, 100);
+      };
+      */
+
+      var canvas2 = document.getElementById("myCanvas2");
+      var context2 = canvas2.getContext("2d");
+      context2.beginPath();
+      context2.arc(50, 50, 30, 0, Math.PI * 2, true);
+      context2.closePath();
+      context2.strokeStyle = "red";
+      context2.fillStyle = "blue";
+      context2.lineWidth = 3;
+      context2.fill();
+      context2.stroke();
+
+
+    </script>
+
+    <h2>Questions & ToDos</h2>
+    <ol>
+
+    </ol>
+
+  </div>
+
+</body>
+
+</html>

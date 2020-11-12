@@ -32,6 +32,10 @@ function makeDirectory() {
       label: "Week 7 Notes",
       url: "week7",
     },
+    {
+      label: "Week 8 Notes",
+      url: "week8",
+    },
   ];
 
   for (var i = 0; i < notes.length; i++) {
@@ -79,6 +83,26 @@ function makeJS30() {
     {
       label: "JavaScript Drum Kit",
       url: "JavaScript30/JavaScriptDrumKit/",
+    },
+    {
+      label: "JS and CSS Clock",
+      url: "JavaScript30/JSandCSSClock/",
+    },
+    {
+      label: "CSS Variables",
+      url: "JavaScript30/CSS Variables/",
+    },
+    {
+      label: "Array1",
+      url: "JavaScript30/Array1/",
+    },
+    {
+      label: "Flex Panel Gallery",
+      url: "JavaScript30/FlexPanelGallery/",
+    },
+    {
+      label: "Ajax Type Ahead",
+      url: "JavaScript30/TypeAhead/",
     },
 
   ];
