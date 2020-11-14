@@ -1,7 +1,5 @@
-
 //creates a file directory on the main index file
 function makeDirectory() {
-
   // a list of assignments and urls
   const notes = [
     {
@@ -36,48 +34,46 @@ function makeDirectory() {
       label: "Week 8 Notes",
       url: "week8",
     },
+    {
+      label: "Week 9 Notes",
+      url: "week9",
+    },
   ];
 
   for (var i = 0; i < notes.length; i++) {
     // create a list element
-    var link = document.createElement('li');
+    var link = document.createElement("li");
 
     // add the text to the list item
     link.innerHTML = `<a href="${notes[i].url}">${notes[i].label}</a>`;
 
-    document.getElementById('directory').appendChild(link);
+    document.getElementById("directory").appendChild(link);
   }
-  
-
 }
 
 //creates a file directory on the main index file
 function makePractice() {
-
   // a list of assignments and urls
   const links = [
     {
       label: "Quiz Ninja",
       url: "quiz",
     },
-
   ];
 
   for (var i = 0; i < links.length; i++) {
     // create a list element
-    var link = document.createElement('li');
+    var link = document.createElement("li");
 
     // add the text to the list item
     link.innerHTML = `<a href="${links[i].url}">${links[i].label}</a>`;
 
-    document.getElementById('practice').appendChild(link);
+    document.getElementById("practice").appendChild(link);
   }
 }
 
-
 //creates a file directory on the main index file
 function makeJS30() {
-
   // a list of assignments and urls
   const links = [
     {
@@ -104,18 +100,27 @@ function makeJS30() {
       label: "Ajax Type Ahead",
       url: "JavaScript30/TypeAhead/",
     },
-
+    {
+      label: "Array Cardio 2",
+      url: "JavaScript30/Array2/",
+    },
+    {
+      label: "HTML5 Canvas",
+      url: "JavaScript30/HTML5Canvas/",
+    },
+    {
+      label: "Dev Tools and Tricks",
+      url: "JavaScript30/DevTools/",
+    },
   ];
 
   for (var i = 0; i < links.length; i++) {
     // create a list element
-    var link = document.createElement('li');
+    var link = document.createElement("li");
 
     // add the text to the list item
     link.innerHTML = `<a href="${links[i].url}">${links[i].label}</a>`;
 
-    document.getElementById('js30').appendChild(link);
+    document.getElementById("js30").appendChild(link);
   }
-  
-
 }

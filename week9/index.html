@@ -27,6 +27,12 @@
     <ul>
       <li><a href="team/index.html">Team Activity</a></li>
       <li><a href="animation.html">Rotating Square Animation</a></li>
+      <li><a href="factors.html">Factorizing Example with Web Workers</a></li>
+      <li><a href="websocket.html">Websockets</a></li>
+      <li><a href="../JavaScript30/Array2/">JS30 - Array Cardio 2</a></li>
+      <li><a href="../JavaScript30/HTML5Canvas/">JS30 - HTML5 Canvas</a></li>
+      <li><a href="../JavaScript30/DevTools/">JS30 - Dev Tools and Tricks</a></li>
+
     </ul>
 
     <h2>JavaScript: Novice to Ninja</h2>
@@ -129,7 +135,7 @@
 
     <h3>Chapter 14 - HTML5 APIs</h3>
 
-    <h5>HTML5</h5>
+    <h5>Data Attributes</h5>
     <ul>
       <li>HTML5 is the latest version - added a large number of new features</li>
       <li>"data-"" attribute - way of embedding data in a web page using custom attributes that are ignored by the
@@ -147,9 +153,106 @@
       const powers = superman.dataset.powers;
     </script>
 
+    <h5>Web Storage</h5>
+    <ul>
+      <li>Web Storage API provides a key-value store on the client's computer similar to cookies but more storage and
+        fewer restrictions. Stores info about users, application specific info used for future sessions</li>
+      <li>Info stored not shared with the server on every request</li>
+      <li>Info available in multiple windows of the browser if domain is the same</li>
+      <li>Most browsers limit 5GB but there is no real limit to storage capacity</li>
+      <li>Does not automatically expire</li>
+      <li>Cna use setItem(), getItem(), removeItem(), or by assignment, and delete, clear()</li>
+      <li>key, key of the item changed</li>
+      <li>newValue, new value that it was changed to</li>
+      <li>oldValue, previous value</li>
+      <li>storageArea, stored in local or session storage</li>
+      <li>localStorage.setItem('name', 'Walter White');</li>
+    </ul>
+
+    <h5>Geolocation</h5>
+    <ul>
+      <li>Used to obtain the geographical position of the device - find exact location, link to nearby places, measure
+        speed of the user</li>
+      <li>use navigator object</li>
+      <li>getCurrentPosition() -> coords property with lat and long</li>
+      <li>position.coords.latitude or .longitude</li>
+      <li>.speed .altitude .heading .timestamp .accuracy .altitudeAccuracy </li>
+      <li>navigator.geolocation.watchPosition() .clearWatch() </li>
+    </ul>
+
+    <script>
+      navigator.geolocation.getCurrentPosition(youAreHere);
+      function youAreHere(position) {
+        console.log(`Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`);
+      }
+    </script>
+
+    <h5>Web Workers</h5>
+    <ul>
+      <li>Web workers allow processes to be run in the background, adding support for </li>
+      <li>const worker = new Worker('task.js');</li>
+      <li>Web workers use concept of messages to communicate back and forth between the main script and the worker
+        script</li>
+      <li>postMessage() - can be used to send a message and start the worker working - worker.postMessage('Hello');</li>
+      <li>self.postMessage('Finished') - posts a message from the worker</li>
+      <li>when a message is posted, a message event is fired, dealt with using an event listener - data sent is stored
+        in the data property of the event</li>
+      <li>stop the worker by worker.terminate() or self.close(); </li>
+      <li>Shared Web Workers -> allow lots of different scripts on the same domain to access the same worker object</li>
+      <li>Service Worker API -> allows a worker script to run in the background with the added benefit of being able to
+        intercept network requests</li>
+    </ul>
+
+    <script>
+      worker.postMessage('Hello');
+      self.postMessage('Finished');
+
+      worker.addEventListener('message', (event) => {
+        console.log(event.data);
+
+      }, false);
+
+      worker.terminate(); // or self.close();
+    </script>
+
+    <h5>Websockets</h5>
+    <ul>
+      <li>New protocol that allows two-way communication with a server - also known as push messaging - a connection is
+        kept open and responses are 'pushed' to the client as soon as they are received</li>
+    </ul>
+
+    <h5>Notifications</h5>
+    <ul>
+      <li>Notification API - allows you to show messages using the system's notifications. Usually a popup in the corner
+        of the screen, but depends on the OS, regardless of what tab you're on</li>
+      <li>must get permission first - Notification.requestPermission()</li>
+    </ul>
+
+    <h5>Multimedia</h5>
+    <ul>
+      <li>HTML5 introduced the audio and video tags used to insert audio and video clips into a web page and Media API
+        for controlling the playback of the clips using JS</li>
+      <li>get the vide and save it to a variable</li>
+      <li>video.play(), .pause() .volume .muted .currentTime .playbackRate .loop .duration</li>
+      <li>Events: play, pause, volumechange, loadedmetadata</li>
+    </ul>
+
+    <!--
+    <audio src='/song.mp3' controls>
+      Your browser does not support the audio element.
+    </audio>
+
+    <video src='http://movie.mp4' controls>
+      Your browser does not support the video element.
+    </video>
+
+    const video = document.getElementsByTagName('video')[0];
+
+    -->
+
     <h2>Questions & ToDos</h2>
     <ol>
-
+      <li>Look further into websockets and notifications and play around with the Multimedia</li>
     </ol>
 
   </div>
