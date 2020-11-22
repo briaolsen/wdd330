@@ -17,8 +17,7 @@ const endpoint = 'https://api.binance.com/api/v3/ticker/price';
 const coinList = [];
 fetch(endpoint)
   .then(blob => blob.json())
-  .then(data => coinList.push(...data))
-  .then(console.log(findMatches("usdt", coinList)));
+  .then(data => coinList.push(...data));
 
 function findMatches(wordToMatch, coinList) {
   return coinList.filter(coin => {

@@ -53,7 +53,7 @@
 
         return `
       <li>
-        <span class="name">${coin.symbol}, ${coin.price}</span>
+        <span class="name">${coin.symbol} :: ${coin.price}</span>
       </li>
     `;
       }).join('');
@@ -63,7 +63,7 @@
     /*********************
      * COINBASE PRO
      * *******************/
-    const coinbaseProURL = 'https://api.pro.coinbase.com/products';
+    const coinbaseProURL = 'https://api.pro.coinbase.com/products/';
     const coinbaseInfo = [];
 
     fetch(coinbaseProURL)
@@ -81,9 +81,11 @@
 
     function displayCoinbase() {
       const coinbaseList = filterCoinbase("usd$", coinbaseInfo);
+      let coinTicker = 0;
       const html = coinbaseList.map(coin => {
-        const regex = new RegExp(this.value, 'gi');
 
+      //  fetch(coinbaseProURL + coin.id + '/ticker')
+      //    .then(blob => blob.json())
         return `
       <li>
         <span class="name">${coin.id}</span>
