@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test API</title>
+</head>
+
+<body>
+
+  <div>
+    <h1>Binance</h1>
+    <ul id="bResults">Results...</ul>
+  </div>
+
+  <div>
+    <h1>Coinbase Pro</h1>
+    <ul id="cpResults">Results...</ul>
+  </div>
+
+  <div>
+    <h1>Gemini</h1>
+    <ul id="gResults">Results...</ul>
+  </div>
+
+  <script>
+
+
+    /*********************
+     * BINANCE
+     * *******************/
+    const binanceURL = 'https://api.binance.com/api/v3/ticker/price';
+    const binanceInfo = [];
+
+    fetch(binanceURL)
+      .then(blob => blob.json())
+      .then(data => binanceInfo.push(...data))
+      .then(console.log(binanceInfo))
+      .catch(error => { console.error("There has been a problem with your Binance fetch operation", error) });
+
+    function filterBinance(wordToMatch, coinList) {
+      return coinList.filter(coin => {
+        const regex = new RegExp(wordToMatch, 'gi');
+        return coin.symbol.match(regex)
+      });
+    };
+
+    function displayBinance() {
+      const binanceList = filterBinance("usdt", binanceInfo);
+      const html = binanceList.map(coin => {
+        const regex = new RegExp(this.value, 'gi');
+
+        return `
+      <li>
+        <span class="name">${coin.symbol}, ${coin.price}</span>
+      </li>
+    `;
+      }).join('');
+      bResults.innerHTML = html;
+    }
+
+    /*********************
+     * COINBASE PRO
+     * *******************/
+    const coinbaseProURL = 'https://api.pro.coinbase.com/products';
+    const coinbaseInfo = [];
+
+    fetch(coinbaseProURL)
+      .then(blob => blob.json())
+      .then(console.log(coinbaseInfo))
+      .then(data => coinbaseInfo.push(...data))
+      .catch(error => { console.error("There has been a problem with your CoinbasePro fetch operation", error) });
+
+    function filterCoinbase(wordToMatch, coinList) {
+      return coinList.filter(coin => {
+        const regex = new RegExp(wordToMatch, 'gi');
+        return coin.quote_currency.match(regex)
+      });
+    };
+
+    function displayCoinbase() {
+      const coinbaseList = filterCoinbase("usd$", coinbaseInfo);
+      const html = coinbaseList.map(coin => {
+        const regex = new RegExp(this.value, 'gi');
+
+        return `
+      <li>
+        <span class="name">${coin.id}</span>
+      </li>
+    `;
+      }).join('');
+      cpResults.innerHTML = html;
+    }
+
+    /*********************
+     * GEMINI
+     * *******************/
+    const geminiURL = 'https://api.gemini.com/v1/symbols';
+    const geminiInfo = [];
+
+    fetch(geminiURL)
+      .then(blob => blob.json())
+      .then(data => geminiInfo.push(...data))
+      .then(console.log(geminiInfo))
+      .catch(error => { console.error("There has been a problem with your Gemini fetch operation", error) });
+
+    function filterGemini(wordToMatch, coinList) {
+      return coinList.filter(coin => {
+        const regex = new RegExp(wordToMatch, 'gi');
+        return coin.match(regex)
+      });
+    };
+
+    function displayGemini() {
+      const geminiList = filterGemini("usd", geminiInfo);
+      const html = geminiList.map(coin => {
+        const regex = new RegExp(this.value, 'gi');
+
+        return `<li><span class="name">${coin}</span></li>`;
+      }).join('');
+      gResults.innerHTML = html;
+    }
+
+    const bResults = document.getElementById('bResults');
+    bResults.addEventListener('click', displayBinance);
+
+    const cpResults = document.getElementById('cpResults');
+    cpResults.addEventListener('click', displayCoinbase);
+
+    const gResults = document.getElementById('gResults');
+    gResults.addEventListener('click', displayGemini);
+  </script>
+
+</body>
+
+</html>

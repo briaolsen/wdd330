@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Week 10 Notes</title>
+  <link id="style" rel="stylesheet" href="../css/notes.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <script>
+    $(document).ready(function () {
+      $('#head').load('../partials/header.html');
+      $('#style').attr('href', '../css/notes.css');
+    });
+  </script>
+
+  <div id="head">
+
+  </div>
+
+  <div id="notes">
+    <h1>Week 10 Notes</h1>
+
+    <h2>Coding Examples and Activities</h2>
+    <ul>
+      <li><a href="team/index.html">Team Activity</a></li>
+    </ul>
+
+    <h2>MDN</h2>
+
+    <h3>Validating Forms</h3>
+
+    <h5>Built-in Form Validation</h5>
+    <ul>
+      <li>required</li>
+      <li>minlength and maxlength</li>
+      <li>min and max</li>
+      <li>type</li>
+      <li>pattern - regular expression</li>
+    </ul>
+
+    <h5>JavaScript Validation</h5>
+    <ul>
+      <li>Constraint Validation API - use on: button, fieldset, input, output, select, textarea</li>
+      <li>Properties Available: validationMessage, validity, will validate</li>
+      <li>ValidityState - patternMismatch, tooLong, tooShort, rangeOverflow, rangeUnderflow, typeMismatch, valid,
+        valueMissing</li>
+      <li>Methods Available: checkValidity(), setCustomValidity() </li>
+    </ul>
+
+    <h5>Summary</h5>
+    <ul>
+      <li>Display explicit error messages</li>
+      <li>Be permissive about the input format</li>
+      <li>Point out exactly where the error occurs, especially on large forms</li>
+    </ul>
+
+    <h3>Using Fetch</h3>
+
+    <script>
+      //EXAMPLE FETCH: 
+      fetch('http://example.com/movies.json')
+        .then(response => response.json())
+        .then(data => console.log(data));
+    </script>
+
+    <h5>Built-in Form Validation</h5>
+
+    <h2>Questions & ToDos</h2>
+    <ol>
+      <li></li>
+    </ol>
+
+  </div>
+
+</body>
+
+</html>
