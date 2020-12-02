@@ -1,0 +1,77 @@
+body {
+ text-align: center;
+ background-color: #7F8688;
+ color: #F3E367;
+ color: white;
+ font-family: Raleway;
+}
+
+#compare {
+
+}
+
+#exchangeContainer {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 25px;
+}
+
+.exchange {
+  color:#F3E367;
+  background-color:#929D9E;
+  text-align: center;
+  margin: 10px;
+  border: 2px solid #F3E367;
+  border-radius: 5px;
+  width: 175px;
+  height: 125px;
+}
+
+.price {
+  color: white;
+  font-size: 24px;
+}
+
+table {
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 10px;
+  border: 2px solid #F3E367;
+}
+
+th {
+  font-size: 20px;
+  margin: 20px;
+  width: 200px;
+}
+
+.hl {
+  background-color: #F3E367;
+}
+
+#suggestions {
+  padding: 0;
+}
+
+.coinList {
+  list-style-type: none;
+}
+
+.coin {
+
+}
+
+.coin:hover {
+  background-color: #F3E367;
+  color: black;
+  cursor: pointer;
+}
+
+#search {
+  text-align: center;
+}
+
+h3 {
+  font-size: 28px;
+  height: 30px;
+}
