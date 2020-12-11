@@ -27,6 +27,11 @@ body {
   height: 125px;
 }
 
+.highest {
+  transform: scale(1.1);
+  box-shadow: 0 0 1rem #F3E367;
+}
+
 .price {
   color: white;
   font-size: 24px;
@@ -58,20 +63,66 @@ th {
 }
 
 .coin {
-
+  width: 100%;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  
 }
 
 .coin:hover {
   background-color: #F3E367;
   color: black;
   cursor: pointer;
+  color: #7F8688;
 }
 
 #search {
   text-align: center;
+  color: #7F8688;
+  outline: 0;
+  border: 10px solid #F7F7F7;
+  border-radius: 5px;
+  font-size: 27px;
 }
 
 h3 {
   font-size: 28px;
-  height: 30px;
+  height: 25px;
+}
+
+h5 {
+  height: 14px;
+}
+
+
+#suggestions {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  /*perspective: 20px;*/
+}
+
+#suggestions li {
+  color: black;
+  background: white;
+  list-style: none;
+  border-bottom: 1px solid #D8D8D8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+  margin: 0 auto;
+  padding: 20px;
+  transition: background 0.2s;
+  display: flex;
+  justify-content: center;
+  text-transform: capitalize;
+  width: 300px;
+}
+
+#suggestions li:nth-child(even) {
+  transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+  background: linear-gradient(to bottom,  #ffffff 0%,#EFEFEF 100%);
+}
+
+#suggestions li:nth-child(odd) {
+  transform: perspective(100px) rotateX(-3deg) translateY(3px);
+  background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%);
 }
