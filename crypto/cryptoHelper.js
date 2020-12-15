@@ -105,6 +105,7 @@ export default class CryptoHelper {
         this.myInterval = window.setInterval(function () {
           const myCrypto = new Crypto(this.parentElement);
           myCrypto.getPriceAll(coin.symbol, `${coin.symbol} - ${coin.fullname}`);
+          displayInfo(coin);
         }, 5000);
       });
     });
@@ -112,10 +113,6 @@ export default class CryptoHelper {
 }
 
 function displayInfo(coin) {
-  /*
-  document.getElementById(
-    "coinName"
-  ).innerHTML = `${coin.symbol} - ${coin.fullname}`;*/
 
   let timestamp = document.getElementById("timestamp");
 
@@ -128,6 +125,5 @@ function displayInfo(coin) {
   let seconds =
     date.getSeconds() > 9 ? date.getSeconds() : "0" + date.getSeconds();
 
-  timestamp.innerHTML = `${date.getMonth() + 1}/${date.getDate()}
-  /${date.getFullYear()} ${hours}:${minutes}:${seconds} ${amPM}`;
+  timestamp.innerHTML = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()} -- ${hours}:${minutes}:${seconds} ${amPM}`;
 }

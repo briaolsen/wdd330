@@ -112,6 +112,7 @@ function displayCoins() {
     tdExchange.innerHTML = coin.exchange;
     tr.appendChild(tdExchange);
 
+    tr.addEventListener("mousedown", removeCoin);
     coinsTable.appendChild(tr);
   });
 }
@@ -148,4 +149,30 @@ function addCoin() {
     saveLocalStorage(array);
     displayCoins(array);
   }
+}
+
+function removeCoin() {
+  console.log(this);
+  this.parentNode.removeChild(this);
+
+  let name = this.getElementsByTagName("td")[0].innerHTML;
+  let amount = parseFloat(this.getElementsByTagName("td")[1].innerHTML);
+  let exchange = this.getElementsByTagName("td")[2].innerHTML;
+
+  let item = {name: name, amount: amount, exchange: exchange};
+
+  let array = loadLocalStorage();
+  let index = -1;
+  for(let i = 0; i < array.length; i++) {
+    if (array[i].name == name && array[i].exchange == exchange && array[i].amount == amount) {
+      index = i;
+    }
+  }
+
+  if(index != -1) {
+    array.splice(index, 1);
+  }
+
+  console.log(array);
+  saveLocalStorage(array);
 }

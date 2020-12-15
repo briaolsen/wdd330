@@ -89,6 +89,10 @@ h5 {
   font-size: 28px;
 }
 
+#search:focus::placeholder {
+  color: transparent;
+}
+
 #error {
   font-size: 14px;
   color: #F3E367;
@@ -132,7 +136,7 @@ h5 {
   outline: 0;
   border: 5px solid #F7F7F7;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 14px;
   margin: 10px;
   width: 120px;
 }
@@ -141,7 +145,7 @@ h5 {
   color: #7F8688;
   border: 5px solid #F7F7F7;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 14px;
   margin: 10px;
   width: 120px;
 }
@@ -152,9 +156,12 @@ h5 {
   outline: 0;
   border: 5px solid #F7F7F7;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 14px;
   margin: 10px;
-  width: 85px;
+  width: 95px;
+  cursor: pointer;
+  margin-bottom: 25px;
+  margin-top: 25px;
 }
 
 #addCoinButton:hover {
@@ -163,18 +170,43 @@ h5 {
 }
 
 table {
-  background-color:#707879;
+  background-color:#838c8d;
   font-family: Roboto;
   margin: 0 auto;
-  padding: 10px;
-  border: 2px solid #F3E367;
-  border-radius: 5px;
+  border-collapse: collapse;
 }
 
-th {
+table th {
+  padding: 8px;
+  background-color: #F3E367;
+  color: #707879;
   font-family: Playfair Designs;
   font-size: 24px;
   margin: 20px;
   width: 200px;
-  color: #F3E367;
+}
+
+table td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-color: #ddd;
+}
+
+table tr {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+table tr:nth-child(even){
+  background-color: #9aa5a7;
+}
+
+table tr:hover{
+  background-color: #ddd;
+  color: #707879;
+  cursor: pointer;
+}
+
+table th:hover{
+  cursor: auto;
 }
