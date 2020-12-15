@@ -1,54 +1,15 @@
 import Crypto from "./crypto.js";
-
-const coins = [
-  { symbol: "BTC", fullname: "Bitcoin" },
-  { symbol: "ETH", fullname: "Ethereum" },
-  { symbol: "BCH", fullname: "Bitcoin Cash" },
-  { symbol: "LTC", fullname: "Litecoin" },
-  { symbol: "ZEC", fullname: "Zcash" },
-  { symbol: "BAT", fullname: "Basic Attention Token" },
-  { symbol: "LINK", fullname: "Chainlink" },
-  { symbol: "DAI", fullname: "Dai" },
-  { symbol: "OXT", fullname: "Orchid" },
-  { symbol: "FIL", fullname: "Filecoin" },
-  { symbol: "AMP", fullname: "Ampleforth" },
-  { symbol: "PAX", fullname: "Paxos Standard" },
-  { symbol: "COMP", fullname: "Compound" },
-  { symbol: "MKR", fullname: "Maker" },
-  { symbol: "ZRX", fullname: "Ox" },
-  { symbol: "KNC", fullname: "Kyber Network" },
-  { symbol: "STORJ", fullname: "Storj" },
-  { symbol: "MANA", fullname: "Decentraland" },
-  { symbol: "AAVE", fullname: "Aave" },
-  { symbol: "SNX", fullname: "Synthetix" },
-  { symbol: "YFI", fullname: "yearn.finance" },
-  { symbol: "UMA", fullname: "UMA" },
-  { symbol: "BAL", fullname: "Balancer" },
-  { symbol: "CRV", fullname: "Curve DAO Token" },
-  { symbol: "REN", fullname: "Ren" },
-  { symbol: "UNI", fullname: "Unibright" },
-];
+import SavedCoins from "./savedCoins.js";
 
 export default class CryptoHelper {
   constructor(elementId) {
     this.parentElement = document.getElementById(elementId);
     this.buildPage();
-    this.crypto = new Crypto(this.parentElement);
     this.myInterval;
   }
 
   buildPage() {
     this.parentElement.innerHTML = "";
-
-    // Coin Name
-    this.coinName = document.createElement("h3");
-    this.coinName.id = "coinName";
-    this.parentElement.appendChild(this.coinName);
-
-    // Timestamp
-    this.timestamp = document.createElement("h5");
-    this.timestamp.id = "timestamp";
-    this.parentElement.appendChild(this.timestamp);
 
     // Exchange Divs
     const exchangeContainer = document.createElement("div");
@@ -57,6 +18,11 @@ export default class CryptoHelper {
     this.buildExchangeDiv("coinbasePro", exchangeContainer);
     this.buildExchangeDiv("binance", exchangeContainer);
     this.buildExchangeDiv("gemini", exchangeContainer);
+
+    // Timestamp
+    this.timestamp = document.createElement("h5");
+    this.timestamp.id = "timestamp";
+    this.parentElement.appendChild(this.timestamp);
 
     // Search Input
     this.search = document.createElement("input");
@@ -74,7 +40,7 @@ export default class CryptoHelper {
     this.parentElement.appendChild(this.suggestions);
 
     // Saved Coins Table
-    this.buildCoinsTable();
+    const savedCoins = new SavedCoins(this.parentElement.id);
   }
 
   buildExchangeDiv(id, exchangeContainer) {
@@ -98,37 +64,17 @@ export default class CryptoHelper {
     exchangeContainer.appendChild(exchangeDiv);
   }
 
-  buildCoinsTable() {
-    const coinsTable = document.createElement("table");
-    coinsTable.id = "coinsTable";
-    const tr = document.createElement("tr");
-    const thCoin = document.createElement("th");
-    const thCBP = document.createElement("th");
-    const thB = document.createElement("th");
-    const thG = document.createElement("th");
-
-    thCoin.innerHTML = "Coin";
-    thCBP.innerHTML = "Coinbase Pro";
-    thB.innerHTML = "Binance";
-    thG.innerHTML = "Gemini";
-
-    tr.appendChild(thCoin);
-    tr.appendChild(thCBP);
-    tr.appendChild(thB);
-    tr.appendChild(thG);
-
-    coinsTable.appendChild(tr);
-
-    this.parentElement.appendChild(coinsTable);
-  }
-
   displayMatches() {
-    const matchArray = coins.filter((coin) => {
+    const myCrypto = new Crypto(this.parentElement);
+    const matchArray = myCrypto.coins.filter((coin) => {
       const regex = new RegExp(this.value, "gi");
       return coin.symbol.match(regex) || coin.fullname.match(regex);
     });
 
     document.getElementById("suggestions").innerHTML = "";
+    document.getElementById("addCoinInput").style.visibility = "hidden";
+    document.getElementById("addCoinButton").style.visibility = "hidden";
+    document.getElementById("addExchange").style.visibility = "hidden";
 
     matchArray.forEach((coin) => {
       const regex = new RegExp(this.value, "gi");
@@ -139,19 +85,18 @@ export default class CryptoHelper {
       document.getElementById("suggestions").appendChild(li);
 
       li.addEventListener("mousedown", () => {
-        document.getElementById(
-          "coinName"
-        ).innerHTML = `${coin.symbol} - ${coin.fullname}`;
-
         document.getElementById("suggestions").innerHTML = "";
-        document.getElementById("search").value = "";
+        document.getElementById("search").value = ``;
+        document.getElementById(
+          "search"
+        ).placeholder = `${coin.symbol} - ${coin.fullname}`;
 
-        const myCrypto = new Crypto(this.parentElement);
-        myCrypto.getPriceAll(coin.symbol).then(
-          highlight(),
-          displayTime()
-        );
-        
+        document.getElementById("addCoinInput").style.visibility = "visible";
+        document.getElementById("addCoinButton").style.visibility = "visible";
+        document.getElementById("addExchange").style.visibility = "visible";
+
+        myCrypto.getPriceAll(coin.symbol, `${coin.symbol} - ${coin.fullname}`);
+        displayInfo(coin);
 
         if (this.myInterval) {
           window.clearInterval(this.myInterval);
@@ -159,49 +104,31 @@ export default class CryptoHelper {
 
         this.myInterval = window.setInterval(function () {
           const myCrypto = new Crypto(this.parentElement);
-          myCrypto.getPriceAll(coin.symbol).then(
-            highlight(),
-            displayTime()
-          );
-          
+          myCrypto.getPriceAll(coin.symbol, `${coin.symbol} - ${coin.fullname}`);
         }, 5000);
       });
     });
   }
 }
 
-function displayTime() {
-  let timestamp = document.getElementById('timestamp');
+function displayInfo(coin) {
+  /*
+  document.getElementById(
+    "coinName"
+  ).innerHTML = `${coin.symbol} - ${coin.fullname}`;*/
+
+  let timestamp = document.getElementById("timestamp");
 
   let date = new Date();
   let hours24 = date.getHours();
   let hours = ((hours24 + 11) % 12) + 1;
-  let amPM = hours24 > 11 ? 'pm' : 'am';
-  let minutes = date.getMinutes() > 9 ? date.getMinutes() : '0' + date.getMinutes();
-  let seconds = date.getSeconds() > 9 ? date.getSeconds() : '0' + date.getSeconds();
+  let amPM = hours24 > 11 ? "PM" : "AM";
+  let minutes =
+    date.getMinutes() > 9 ? date.getMinutes() : "0" + date.getMinutes();
+  let seconds =
+    date.getSeconds() > 9 ? date.getSeconds() : "0" + date.getSeconds();
 
-  timestamp.innerHTML = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${hours}:${minutes}:${seconds} ${amPM}`;
-}
-
-function highlight() {
-
-  let b = document.getElementById('binancePrice');
-  let cbp = document.getElementById('coinbaseProPrice');
-  let g = document.getElementById('geminiPrice');
-
-  let bPrice = parseFloat(b.innerHTML.substring(1));
-  let cbpPrice = parseFloat(cbp.innerHTML.substring(1));
-  let gPrice = parseFloat(g.innerHTML.substring(1));
-
-  b.parentElement.classList.remove("highest");
-  cbp.parentElement.classList.remove("highest");
-  g.parentElement.classList.remove("highest");
-
-  if (bPrice > cbpPrice && bPrice > gPrice) {
-    b.parentElement.classList.add("highest");
-  } else if (cbpPrice > bPrice && cbpPrice > gPrice) {
-    cbp.parentElement.classList.add("highest");
-  } else if (gPrice > bPrice && gPrice > cbpPrice) {
-    g.parentElement.classList.add("highest");
-  }
+  timestamp.innerHTML = `${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()} ${hours}:${minutes}:${seconds} ${amPM}`;
 }

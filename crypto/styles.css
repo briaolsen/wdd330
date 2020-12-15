@@ -3,28 +3,23 @@ body {
  background-color: #7F8688;
  color: #F3E367;
  color: white;
- font-family: Raleway;
-}
-
-#compare {
-
+ font-family: Playfair Design;
 }
 
 #exchangeContainer {
   display: flex;
   justify-content: center;
-  padding-bottom: 25px;
 }
 
 .exchange {
-  color:#F3E367;
+  color:white;
   background-color:#929D9E;
   text-align: center;
   margin: 10px;
   border: 2px solid #F3E367;
   border-radius: 5px;
   width: 175px;
-  height: 125px;
+  height: 150px;
 }
 
 .highest {
@@ -33,21 +28,14 @@ body {
 }
 
 .price {
-  color: white;
+  font-family: Raleway;
+  color: #F3E367;
   font-size: 24px;
 }
 
-table {
-  margin: 0 auto;
-  margin-top: 50px;
-  padding: 10px;
-  border: 2px solid #F3E367;
-}
-
-th {
-  font-size: 20px;
-  margin: 20px;
-  width: 200px;
+.total {
+  color: whitesmoke;
+  font-size: 14px;
 }
 
 .hl {
@@ -66,7 +54,6 @@ th {
   width: 100%;
   padding-top: 3px;
   padding-bottom: 3px;
-  
 }
 
 .coin:hover {
@@ -82,7 +69,7 @@ th {
   outline: 0;
   border: 10px solid #F7F7F7;
   border-radius: 5px;
-  font-size: 27px;
+  font-size: 28px;
 }
 
 h3 {
@@ -94,6 +81,14 @@ h5 {
   height: 14px;
 }
 
+h2 {
+  font-size: 28px;
+}
+
+#error {
+  font-size: 14px;
+  color: #F3E367;
+}
 
 #suggestions {
   margin: 0;
@@ -125,4 +120,57 @@ h5 {
 #suggestions li:nth-child(odd) {
   transform: perspective(100px) rotateX(-3deg) translateY(3px);
   background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%);
+}
+
+#addCoinInput {
+  text-align: center;
+  color: #7F8688;
+  outline: 0;
+  border: 5px solid #F7F7F7;
+  border-radius: 5px;
+  font-size: 12px;
+  margin: 10px;
+  width: 120px;
+}
+
+#addExchange {
+  color: #7F8688;
+  border: 5px solid #F7F7F7;
+  border-radius: 5px;
+  font-size: 12px;
+  margin: 10px;
+  width: 120px;
+}
+
+#addCoinButton {
+  text-align: center;
+  color: #7F8688;
+  outline: 0;
+  border: 5px solid #F7F7F7;
+  border-radius: 5px;
+  font-size: 12px;
+  margin: 10px;
+  width: 85px;
+}
+
+#addCoinButton:hover {
+  background-color: #F3E367;
+  border: 5px solid #F3E367;
+}
+
+table {
+  background-color:#929D9E;
+  font-family: Roboto;
+  margin: 0 auto;
+  padding: 10px;
+  border: 2px solid #F3E367;
+  border-radius: 5px;
+}
+
+th {
+  font-family: Playfair Designs;
+  font-size: 24px;
+  margin: 20px;
+  width: 200px;
+  color: #F3E367;
 }
