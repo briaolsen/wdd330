@@ -1,9 +1,26 @@
 body {
  text-align: center;
- background-color: #7F8688;
+ background-color: #3c4650;
  color: #F3E367;
  color: white;
  font-family: Playfair Design;
+}
+
+h1 {
+  font-size: 42px;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 28px;
+  height: 25px;
+}
+
+h5 {
+  height: 14px;
 }
 
 #exchangeContainer {
@@ -13,7 +30,7 @@ body {
 
 .exchange {
   color:white;
-  background-color:#929D9E;
+  background-color:#707879;
   text-align: center;
   margin: 10px;
   border: 2px solid #F3E367;
@@ -69,19 +86,6 @@ body {
   outline: 0;
   border: 10px solid #F7F7F7;
   border-radius: 5px;
-  font-size: 28px;
-}
-
-h3 {
-  font-size: 28px;
-  height: 25px;
-}
-
-h5 {
-  height: 14px;
-}
-
-h2 {
   font-size: 28px;
 }
 
@@ -159,7 +163,7 @@ h2 {
 }
 
 table {
-  background-color:#929D9E;
+  background-color:#707879;
   font-family: Roboto;
   margin: 0 auto;
   padding: 10px;

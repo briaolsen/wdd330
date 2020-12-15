@@ -128,7 +128,6 @@ function displayInfo(coin) {
   let seconds =
     date.getSeconds() > 9 ? date.getSeconds() : "0" + date.getSeconds();
 
-  timestamp.innerHTML = `${date.getDate()}/${
-    date.getMonth() + 1
-  }/${date.getFullYear()} ${hours}:${minutes}:${seconds} ${amPM}`;
+  timestamp.innerHTML = `${date.getMonth() + 1}/${date.getDate()}
+  /${date.getFullYear()} ${hours}:${minutes}:${seconds} ${amPM}`;
 }
