@@ -1,13 +1,25 @@
 import Crypto from "./crypto.js";
 import SavedCoins from "./savedCoins.js";
 
+/********************************************
+ * Author: Briana Olsen
+ * CRYPTOHELPER CLASS
+ * Builds the page for the crypto exchanges
+ ********************************************/
+
 export default class CryptoHelper {
+
   constructor(elementId) {
     this.parentElement = document.getElementById(elementId);
     this.buildPage();
     this.myInterval;
   }
 
+  /***********************************************************
+   * BUILD PAGE
+   * Builds and displays the Exchange Divs, Timestamp, 
+   * Search Input, Suggestions
+   ***********************************************************/
   buildPage() {
     this.parentElement.innerHTML = "";
 
@@ -43,6 +55,10 @@ export default class CryptoHelper {
     const savedCoins = new SavedCoins(this.parentElement.id);
   }
 
+  /***********************************************************
+   * BUILD EXCHANGE DIV
+   * Builds the Exchange Divs with Names and Prices
+   ***********************************************************/
   buildExchangeDiv(id, exchangeContainer) {
     // Exchange Container
     const exchangeDiv = document.createElement("div");
@@ -64,18 +80,26 @@ export default class CryptoHelper {
     exchangeContainer.appendChild(exchangeDiv);
   }
 
+  /***********************************************************
+   * DISPLAY MATCHES
+   * Displays the search results
+   ***********************************************************/
   displayMatches() {
+
+    // make sure the add coins items are hidden while searching
+    document.getElementById("suggestions").innerHTML = "";
+    document.getElementById("addCoinInput").style.visibility = "hidden";
+    document.getElementById("addCoinButton").style.visibility = "hidden";
+    document.getElementById("addExchange").style.visibility = "hidden";
+
+    // filter coins with current input
     const myCrypto = new Crypto(this.parentElement);
     const matchArray = myCrypto.coins.filter((coin) => {
       const regex = new RegExp(this.value, "gi");
       return coin.symbol.match(regex) || coin.fullname.match(regex);
     });
 
-    document.getElementById("suggestions").innerHTML = "";
-    document.getElementById("addCoinInput").style.visibility = "hidden";
-    document.getElementById("addCoinButton").style.visibility = "hidden";
-    document.getElementById("addExchange").style.visibility = "hidden";
-
+    // create a list of all the search results
     matchArray.forEach((coin) => {
       const regex = new RegExp(this.value, "gi");
 
@@ -84,35 +108,43 @@ export default class CryptoHelper {
       li.innerHTML = `<span class="coin">${coin.symbol} - ${coin.fullname}</span>`;
       document.getElementById("suggestions").appendChild(li);
 
+      // Clear suggestions, and add in the placeholder of the search item clicked on
       li.addEventListener("mousedown", () => {
-        document.getElementById("suggestions").innerHTML = "";
-        document.getElementById("search").value = ``;
-        document.getElementById(
-          "search"
-        ).placeholder = `${coin.symbol} - ${coin.fullname}`;
+        document.getElementById("suggestions").innerHTML = '';
+        document.getElementById("search").value = '';
+        document.getElementById("search").placeholder = `${coin.symbol} - ${coin.fullname}`;
 
+        // Show items to add coins to storage and table
         document.getElementById("addCoinInput").style.visibility = "visible";
         document.getElementById("addCoinButton").style.visibility = "visible";
         document.getElementById("addExchange").style.visibility = "visible";
 
+        // get price of coin and display time
         myCrypto.getPriceAll(coin.symbol, `${coin.symbol} - ${coin.fullname}`);
-        displayInfo(coin);
+        displayTime();
 
+        // clear interval from last coin if this isn't the first search
         if (this.myInterval) {
           window.clearInterval(this.myInterval);
         }
 
+        // check coin every 5000 ms
         this.myInterval = window.setInterval(function () {
           const myCrypto = new Crypto(this.parentElement);
           myCrypto.getPriceAll(coin.symbol, `${coin.symbol} - ${coin.fullname}`);
-          displayInfo(coin);
+          displayTime();
         }, 5000);
       });
     });
   }
 }
 
-function displayInfo(coin) {
+/***********************************************************
+* DISPLAY TIME
+* Displays a timestamp of the current time
+* 00/00/0000 -- H:M:S AM/PM
+***********************************************************/
+function displayTime() {
 
   let timestamp = document.getElementById("timestamp");
 

@@ -102,9 +102,12 @@ h5 {
   margin: 0;
   padding: 0;
   position: relative;
-  /*perspective: 20px;*/
 }
 
+
+/* Much of this CSS for suggestions was from
+   the Drums Kit Tutorial from Javascript30
+   https://javascript30.com/ */
 #suggestions li {
   color: black;
   background: white;
@@ -116,7 +119,6 @@ h5 {
   transition: background 0.2s;
   display: flex;
   justify-content: center;
-  text-transform: capitalize;
   width: 300px;
 }
 
@@ -174,12 +176,13 @@ table {
   font-family: Roboto;
   margin: 0 auto;
   border-collapse: collapse;
+  color:  white
 }
 
 table th {
   padding: 8px;
   background-color: #F3E367;
-  color: #707879;
+  color:  #3c4650;
   font-family: Playfair Designs;
   font-size: 24px;
   margin: 20px;
@@ -203,10 +206,19 @@ table tr:nth-child(even){
 
 table tr:hover{
   background-color: #ddd;
-  color: #707879;
+  color:  #3c4650;
   cursor: pointer;
 }
 
 table th:hover{
   cursor: auto;
+}
+
+.added {
+  transition: color 1s;
+}
+
+.deleted {
+  background-color: #ddd;
+  transition: opacity 1s;
 }

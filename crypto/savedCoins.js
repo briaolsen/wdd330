@@ -1,3 +1,11 @@
+/********************************************
+ * Author: Briana Olsen
+ * SAVED COINS
+ * Saves coins to local storage and displays
+ * them in a table with their corresponding
+ * amounts and exchange
+ ********************************************/
+
 export default class SavedCoins {
   constructor(elementId) {
     this.parentElement = document.getElementById(elementId);
@@ -5,13 +13,20 @@ export default class SavedCoins {
     displayCoins();
   }
 
+  /********************************************
+   * DISPLAY INPUT
+   * Builds the input, exchange option, and button
+   * for adding a coin to local storage
+   *******************************************/
   displayInput() {
+    // Input - number of coins
     this.addCoinInput = document.createElement("input");
     this.addCoinInput.id = "addCoinInput";
     this.addCoinInput.placeholder = "# of coins";
     this.addCoinInput.style.visibility = "hidden";
     this.parentElement.appendChild(this.addCoinInput);
 
+    // Exchange select input from Binance, CoinbasePro, Gemini
     this.addExchange = document.createElement("select");
     this.addExchange.id = "addExchange";
     this.addExchange.style.visibility = "hidden";
@@ -37,17 +52,20 @@ export default class SavedCoins {
     this.addExchange.appendChild(gOption);
     this.parentElement.appendChild(this.addExchange);
 
+    // Add Coin Button
     this.addCoinButton = document.createElement("button");
     this.addCoinButton.id = "addCoinButton";
     this.addCoinButton.innerHTML = "Add Coins";
     this.addCoinButton.style.visibility = "hidden";
     this.parentElement.appendChild(this.addCoinButton);
 
+    // Error for invalid input
     this.error = document.createElement("div");
     this.error.id = "error";
     this.error.style.visibility = "hidden";
     this.parentElement.appendChild(this.error);
 
+    // Table for coins
     let tableHead = document.createElement("h2");
     tableHead.innerHTML = "My Coins";
     this.parentElement.appendChild(tableHead);
@@ -56,16 +74,24 @@ export default class SavedCoins {
     this.coinsTable.id = "coinsTable";
     this.parentElement.appendChild(this.coinsTable);
 
+    // Call addCoin function when button is clicked
     this.addCoinButton.addEventListener("click", addCoin);
-
-  
   }
 }
 
+/********************************************
+ * SAVE LOCAL STORAGE
+ * Saves an array to local storage
+ *******************************************/
 function saveLocalStorage(coinsArray) {
   localStorage.setItem("coins", JSON.stringify(coinsArray));
 }
 
+/********************************************
+ * LOAD LOCAL STORAGE
+ * Loads the coin array from storage or returns
+ * an empty array
+ *******************************************/
 function loadLocalStorage() {
   if (localStorage.getItem("coins")) {
     return JSON.parse(localStorage.getItem("coins"));
@@ -74,11 +100,14 @@ function loadLocalStorage() {
   }
 }
 
+/********************************************
+ * DISPLAY COINS
+ * Builds and displays the coins and their 
+ * corresponding amounts and exchange.
+ *******************************************/
 function displayCoins() {
   let array = loadLocalStorage();
-
   let coinsTable = document.getElementById("coinsTable");
-
   coinsTable.innerHTML = "";
 
   const tr = document.createElement("tr");
@@ -97,6 +126,7 @@ function displayCoins() {
 
   coinsTable.appendChild(tr);
 
+  // displays each coin on it's own row
   array.forEach((coin) => {
     const tr = document.createElement("tr");
 
@@ -112,17 +142,23 @@ function displayCoins() {
     tdExchange.innerHTML = coin.exchange;
     tr.appendChild(tdExchange);
 
+    // removes coin when clicked
     tr.addEventListener("mousedown", removeCoin);
     coinsTable.appendChild(tr);
   });
 }
 
+/********************************************
+ * ADD COIN
+ * Adds a coin to local storage
+ *******************************************/
 function addCoin() {
   let array = loadLocalStorage();
   let coin = document.getElementById("search").placeholder;
   let amount = parseFloat(document.getElementById("addCoinInput").value);
   let exchange = document.getElementById("addExchange").value;
 
+  // Checks for valid input and displays an error if invalid
   if(!exchange && !amount) {
     document.getElementById("error").innerHTML = "***Please enter a valid number and choose an exchange***";
     document.getElementById("error").style.visibility = "visible";
@@ -142,25 +178,33 @@ function addCoin() {
       }
     });
 
+    // adds coin to the array and saves it to local storage if valid
     if (!exists) {
       array.push({ name: coin, amount: amount, exchange: exchange });
     }
-
     saveLocalStorage(array);
     displayCoins(array);
   }
 }
 
+/********************************************
+ * REMOVE COIN
+ * Removes a coin from the table and array
+ *******************************************/
 function removeCoin() {
-  console.log(this);
-  this.parentNode.removeChild(this);
+  // removes the row of the coin from the table
+  //this.parentNode.removeChild(this);
+  this.classList.add('deleted');
+  this.style.opacity = 0;
+  setTimeout(() => this.parentNode.removeChild(this), 900);
 
+
+  // gets the info from the table 
   let name = this.getElementsByTagName("td")[0].innerHTML;
   let amount = parseFloat(this.getElementsByTagName("td")[1].innerHTML);
   let exchange = this.getElementsByTagName("td")[2].innerHTML;
 
-  let item = {name: name, amount: amount, exchange: exchange};
-
+  // searches the array for the coin
   let array = loadLocalStorage();
   let index = -1;
   for(let i = 0; i < array.length; i++) {
@@ -169,10 +213,11 @@ function removeCoin() {
     }
   }
 
+  // splice the coin out of the array
   if(index != -1) {
     array.splice(index, 1);
   }
 
-  console.log(array);
+  // saves the new array to local storage
   saveLocalStorage(array);
 }
