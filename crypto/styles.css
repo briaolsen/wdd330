@@ -228,3 +228,21 @@ table th:hover{
   background-color: #ddd;
   transition: opacity 1s;
 }
+
+
+@media screen and (max-width: 700px) {
+
+  h1 {
+    font-size: 30px;
+  }
+
+  #exchangeContainer {
+    display: grid;
+    margin: 0 auto;
+  }
+
+  #search {
+    
+    font-size: 18px;
+  }
+}
