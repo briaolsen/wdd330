@@ -142,7 +142,7 @@ export default class CryptoHelper {
 /***********************************************************
 * DISPLAY TIME
 * Displays a timestamp of the current time
-* 00/00/0000 -- H:M:S AM/PM
+* MM/DD/YYYY -- H:M:S AM/PM
 ***********************************************************/
 function displayTime() {
 

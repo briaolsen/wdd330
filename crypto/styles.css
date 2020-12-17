@@ -105,7 +105,7 @@ h5 {
 }
 
 
-/* Much of this CSS for suggestions was from
+/* Ideas for the CSS for suggestions was from
    the Drums Kit Tutorial from Javascript30
    https://javascript30.com/ */
 #suggestions li {
@@ -176,7 +176,7 @@ table {
   font-family: Roboto;
   margin: 0 auto;
   border-collapse: collapse;
-  color:  white
+  color:  white;
 }
 
 table th {
@@ -189,6 +189,11 @@ table th {
   width: 200px;
 }
 
+table th:hover {
+  color:#838c8d;
+  cursor: pointer; 
+}
+
 table td {
   padding-top: 12px;
   padding-bottom: 12px;
@@ -198,6 +203,7 @@ table td {
 table tr {
   padding-top: 20px;
   padding-bottom: 20px;
+  transition: color 1.5s;
 }
 
 table tr:nth-child(even){
@@ -215,7 +221,7 @@ table th:hover{
 }
 
 .added {
-  transition: color 1s;
+  color: #F3E367;
 }
 
 .deleted {

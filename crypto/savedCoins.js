@@ -105,7 +105,7 @@ function loadLocalStorage() {
  * Builds and displays the coins and their 
  * corresponding amounts and exchange.
  *******************************************/
-function displayCoins() {
+function displayCoins(i = -1) {
   let array = loadLocalStorage();
   let coinsTable = document.getElementById("coinsTable");
   coinsTable.innerHTML = "";
@@ -115,14 +115,17 @@ function displayCoins() {
   const thCoin = document.createElement("th");
   thCoin.innerHTML = "Coin";
   tr.appendChild(thCoin);
+  thCoin.addEventListener('click', sortByCoin);
 
   const thAmount = document.createElement("th");
   thAmount.innerHTML = "Amount";
   tr.appendChild(thAmount);
+  thAmount.addEventListener('click', sortByAmount);
 
   const thExchange = document.createElement("th");
   thExchange.innerHTML = "Exchange";
   tr.appendChild(thExchange);
+  thExchange.addEventListener('click', sortByExchange);
 
   coinsTable.appendChild(tr);
 
@@ -146,6 +149,13 @@ function displayCoins() {
     tr.addEventListener("mousedown", removeCoin);
     coinsTable.appendChild(tr);
   });
+
+  if(i > -1) {
+    coinsTable.rows[i+1].cells[1].classList.add('added');
+    let add = setTimeout(() => {coinsTable.rows[i+1].cells[1].classList.remove('added')}, 1500);
+  }
+
+   
 }
 
 /********************************************
@@ -156,7 +166,8 @@ function addCoin() {
   let array = loadLocalStorage();
   let coin = document.getElementById("search").placeholder;
   let amount = parseFloat(document.getElementById("addCoinInput").value);
-  let exchange = document.getElementById("addExchange").value;
+  let exchange = document.getElementById("addExchange").value; 
+  let i = -1;
 
   // Checks for valid input and displays an error if invalid
   if(!exchange && !amount) {
@@ -171,10 +182,11 @@ function addCoin() {
   } else {
     let exists = false;
     document.getElementById("error").style.visibility = "hidden";
-    array.forEach((c) => {
+    array.forEach((c, index) => {
       if (c.name == coin && c.exchange == exchange) {
         c.amount += amount;
         exists = true;
+        i = index;
       }
     });
 
@@ -183,7 +195,7 @@ function addCoin() {
       array.push({ name: coin, amount: amount, exchange: exchange });
     }
     saveLocalStorage(array);
-    displayCoins(array);
+    displayCoins(i);
   }
 }
 
@@ -220,4 +232,62 @@ function removeCoin() {
 
   // saves the new array to local storage
   saveLocalStorage(array);
+}
+
+
+/********************************************
+ * SORT BY COIN
+ * Sorts the Table Alphabetically by Coin Name
+ *******************************************/
+function sortByCoin() {
+  let array = loadLocalStorage();
+  array.sort((a,b)=>{
+    let aname = a.name;
+    let bname = b.name;
+    if(aname < bname) {return -1;}
+    if(aname > bname) {return 1;}
+    return 0;
+  });
+  saveLocalStorage(array);
+  displayCoins();
+}
+
+/********************************************
+ * SORT BY AMOUNT
+ * Sorts the Table by Coin Amount (highest)
+ *******************************************/
+function sortByAmount() {
+  let array = loadLocalStorage();
+
+  array.sort((a,b)=>{
+    return b.amount - a.amount;
+  });
+
+  saveLocalStorage(array);
+  displayCoins();
+}
+
+/********************************************
+ * SORT BY EXCHANGE
+ * Sorts the Table by Exchange Alphabetically
+ *******************************************/
+function sortByExchange() {
+  let array = loadLocalStorage();
+  array.sort((a,b)=>{
+    let aname = a.name;
+    let bname = b.name;
+    if(aname < bname) {return -1;}
+    if(aname > bname) {return 1;}
+    return 0;
+  });
+
+  array.sort((a,b)=>{
+    let aexchange = a.exchange;
+    let bexchange = b.exchange;
+    if(aexchange < bexchange) {return -1;}
+    if(aexchange > bexchange) {return 1;}
+    return 0;
+  })
+  saveLocalStorage(array);
+  displayCoins();
 }
